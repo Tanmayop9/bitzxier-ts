@@ -1,19 +1,34 @@
-const { ActivityType } = require('discord.js')
+/**
+ * @author Tanmay
+ * @recoded Nerox Studios
+ * @version v2-alpha-1
+ * @description Ready event handler - Called when bot is ready
+ */
+
+const { ActivityType } = require('discord.js');
+
 module.exports = async (client) => {
     client.on('ready', async () => {
-	client.ready = true
-    client.user.setPresence({
-        activities: [
-            {
-                name: `FasterThanLight..!!`, 
-                type: ActivityType.Listening // Can be Playing, Streaming, Listening, Watching
-            }
-        ],
-        status: 'online' // Can be 'online', 'idle', 'dnd', 'invisible'
+        client.ready = true;
+
+        // Set bot presence
+        client.user.setPresence({
+            activities: [
+                {
+                    name: 'FasterThanLight..!!',
+                    type: ActivityType.Listening,
+                },
+            ],
+            status: 'online',
+        });
+
+        // Log ready status
+        client.logger.log(`Logged in as ${client.user.tag}`, 'ready');
+        client.logger.log(`Serving ${client.guilds.cache.size} guilds`, 'ready');
+        client.logger.log(`Connected to ${client.channels.cache.size} channels`, 'ready');
+
+        // Log health status
+        const health = await client.healthCheck.getHealthReport();
+        client.logger.debug(`Bot health: ${health.overall}`);
     });
-        client.logger.log(`Logged in to ${client.user.tag}`, 'ready')
-
-    })
-    
-
-}
+};

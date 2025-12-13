@@ -10,6 +10,8 @@ const ConfigValidator = require('./ConfigValidator');
 const CommandHandler = require('./CommandHandler');
 const PremiumManager = require('./PremiumManager');
 const HealthCheck = require('./HealthCheck');
+const CacheManager = require('./CacheManager');
+const { COLORS, EMOJIS, VERSION } = require('./constants');
 module.exports = class Friday extends Client {
     constructor() {
         super({
@@ -31,23 +33,17 @@ module.exports = class Friday extends Client {
        this.cluster = new ClusterClient(this);
         this.config = require(`${process.cwd()}/config.json`)
         this.logger = require('./logger')
-		this.ready = false
-        this.rateLimits = new Collection()
-        this.commands = new Collection()
-        this.categories = fs.readdirSync('./commands/')
-        this.emoji = {
-            tick: '✅',
-            cross: '❌',
-            dot: '•',
-            process : '⏳',
-            disable : '🔴',
-            enable : '🟢',
-            protect : '🛡️',
-            hii : '👋'
-        }
+        this.ready = false;
+        this.rateLimits = new Collection();
+        this.commands = new Collection();
+        this.categories = fs.readdirSync('./commands/');
+        
+        // Use constants for emojis and colors
+        this.emoji = EMOJIS;
+        this.color = COLORS.PRIMARY;
+        this.version = VERSION.FULL;
 
-        this.util = new Utils(this)
-        this.color = 0x5865F2
+        this.util = new Utils(this);
         this.support = `https://discord.gg/S7Ju9RUpbT`
         this.cooldowns = new Collection()
         // Initialize webhooks only if URLs are provided in config
@@ -63,6 +59,7 @@ module.exports = class Friday extends Client {
         this.commandHandler = new CommandHandler(this);
         this.premiumManager = new PremiumManager(this);
         this.healthCheck = new HealthCheck(this);
+        this.cacheManager = new CacheManager();
 
         // Use centralized error handler for client errors
         this.on('error', (error) => {

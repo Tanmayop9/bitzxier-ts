@@ -6,6 +6,7 @@
  */
 
 const chalk = require('chalk');
+const { IGNORED_ERROR_CODES } = require('./constants');
 
 /**
  * Custom error classes for better error handling
@@ -48,7 +49,7 @@ class PermissionError extends BotError {
 class ErrorHandler {
     constructor(client) {
         this.client = client;
-        this.ignoredCodes = new Set([10008, 4000, 10001, 10003, 10004, 10005, 50001, 10062, 50013, 50035]);
+        this.ignoredCodes = IGNORED_ERROR_CODES;
     }
 
     /**
