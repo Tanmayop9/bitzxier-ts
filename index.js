@@ -59,7 +59,15 @@ const client = new Friday();
         client.logger.log('Initializing feature manager...');
         await client.featureManager.initialize();
 
-        // Initialize auto-updater
+        // Initialize command scheduler
+        client.logger.log('Initializing command scheduler...');
+        await client.commandScheduler.initialize();
+
+        // Initialize announcement manager
+        client.logger.log('Initializing announcement manager...');
+        await client.announcementManager.initialize();
+
+        // Initialize auto-updater (after announcement manager)
         client.logger.log('Initializing auto-updater...');
         await client.autoUpdater.initialize();
 

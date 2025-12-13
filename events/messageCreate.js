@@ -484,6 +484,12 @@ module.exports = async (client) => {
                 }
             }
             if (!command) return
+            
+            // Check if command is disabled by scheduler - if disabled, act as if command doesn't exist
+            if (client.commandScheduler && client.commandScheduler.isCommandDisabled(command.name)) {
+                return; // Silently ignore, don't show any message
+            }
+            
             let maintain = await client.db.get(`maintanance_${client.user.id}`)
             if (maintain && !client.config.admin.includes(message.author.id)) {
                 const row = new ActionRowBuilder().addComponents(

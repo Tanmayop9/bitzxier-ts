@@ -136,12 +136,13 @@ class FeatureManager {
      */
     hashGuildId(guildId) {
         let hash = 0;
-        for (let i = 0; i < guildId.length; i++) {
-            const char = guildId.charCodeAt(i);
-            hash = (hash << 5) - hash + char;
-            hash = hash & hash; // Convert to 32-bit integer
+        const str = String(guildId);
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            // Use unsigned 32-bit operations to prevent overflow
+            hash = ((hash << 5) - hash + char) >>> 0;
         }
-        return Math.abs(hash);
+        return hash;
     }
 
     /**

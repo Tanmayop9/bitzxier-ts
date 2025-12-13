@@ -6,7 +6,7 @@
  */
 
 const axios = require('axios');
-const { execSync, exec } = require('child_process');
+const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
@@ -22,7 +22,7 @@ class AutoUpdater {
             branch: process.env.UPDATE_BRANCH || 'main',
             backupDir: path.join(process.cwd(), 'backups'),
         };
-        this.currentVersion = require('../package.json').version;
+        this.currentVersion = require(path.join(process.cwd(), 'package.json')).version;
         this.updateInProgress = false;
     }
 
@@ -120,11 +120,29 @@ class AutoUpdater {
     }
 
     /**
+     * Validate repository and branch names
+     * @param {string} repo - Repository name
+     * @param {string} branch - Branch name
+     * @returns {boolean} Valid or not
+     */
+    validateInput(repo, branch) {
+        // Only allow alphanumeric, hyphens, underscores, and forward slashes
+        const repoRegex = /^[a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]+$/;
+        const branchRegex = /^[a-zA-Z0-9_.-]+$/;
+        return repoRegex.test(repo) && branchRegex.test(branch);
+    }
+
+    /**
      * Get latest commit from GitHub
      * @returns {Promise<Object>} Commit information
      */
     async getLatestCommit() {
         try {
+            // Validate inputs to prevent URL injection
+            if (!this.validateInput(this.config.githubRepo, this.config.branch)) {
+                throw new Error('Invalid repository or branch name');
+            }
+
             const url = `https://api.github.com/repos/${this.config.githubRepo}/commits/${this.config.branch}`;
             const response = await axios.get(url, {
                 headers: {
@@ -225,9 +243,12 @@ class AutoUpdater {
                 this.client.logger.debug('No local changes to stash');
             }
 
-            // Pull latest changes
+            // Pull latest changes (branch validated earlier)
             this.client.logger.info('Pulling latest changes...');
-            execSync(`git pull origin ${this.config.branch}`, { encoding: 'utf-8' });
+            if (!this.validateInput(this.config.githubRepo, this.config.branch)) {
+                throw new Error('Invalid branch name');
+            }
+            execSync(`git pull origin "${this.config.branch}"`, { encoding: 'utf-8' });
 
             // Install dependencies
             this.client.logger.info('Installing dependencies...');
@@ -243,6 +264,11 @@ class AutoUpdater {
 
             // Notify success
             await this.notifyUpdateSuccess(updateInfo);
+
+            // Announce update to all servers
+            if (this.client.announcementManager) {
+                await this.client.announcementManager.announceUpdate(updateInfo);
+            }
 
             // Schedule restart
             await this.scheduleRestart();
@@ -270,12 +296,18 @@ class AutoUpdater {
     async createBackup() {
         try {
             const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-            const backupName = `backup-${timestamp}.tar.gz`;
+            // Sanitize timestamp to prevent injection
+            const safeTimestamp = timestamp.replace(/[^a-zA-Z0-9-]/g, '');
+            const backupName = `backup-${safeTimestamp}.tar.gz`;
             const backupPath = path.join(this.config.backupDir, backupName);
+
+            // Use absolute paths to prevent injection
+            const absoluteBackupPath = path.resolve(backupPath);
+            const workingDir = process.cwd();
 
             // Create tar backup excluding node_modules, data, and logs
             execSync(
-                `tar -czf ${backupPath} --exclude=node_modules --exclude=data-sets --exclude=Database --exclude=logs --exclude=backups .`,
+                `tar -czf "${absoluteBackupPath}" --exclude=node_modules --exclude=data-sets --exclude=Database --exclude=logs --exclude=backups -C "${workingDir}" .`,
                 { encoding: 'utf-8' }
             );
 
