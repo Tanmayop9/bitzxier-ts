@@ -39,7 +39,7 @@ class BaseCommand {
         this.guildOnly = options.guildOnly || true;
         this.permissions = {
             user: options.userPermissions || [],
-            bot: options.botPermissions || [],
+            bot: options.botPermissions || []
         };
     }
 

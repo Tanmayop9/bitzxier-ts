@@ -29,10 +29,21 @@ module.exports = class Friday extends Client {
             interval: 300,
             lifetime: 1800
         }} })
-        this.setMaxListeners(Infinity)
-       this.cluster = new ClusterClient(this);
-        this.config = require(`${process.cwd()}/config.json`)
-        this.logger = require('./logger')
+        this.setMaxListeners(Infinity);
+        this.cluster = new ClusterClient(this);
+        this.config = require(`${process.cwd()}/config.json`);
+        
+        // Validate configuration
+        const validation = ConfigValidator.validate(this.config);
+        if (!validation.success) {
+            console.error('Configuration validation failed:', validation.errors);
+            process.exit(1);
+        }
+        if (validation.warnings.length > 0) {
+            console.warn('Configuration warnings:', validation.warnings);
+        }
+        
+        this.logger = require('./logger');
         this.ready = false;
         this.rateLimits = new Collection();
         this.commands = new Collection();

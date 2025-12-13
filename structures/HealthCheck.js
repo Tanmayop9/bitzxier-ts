@@ -6,6 +6,7 @@
  */
 
 const os = require('os');
+const express = require('express');
 
 class HealthCheck {
     constructor(client) {
@@ -139,7 +140,6 @@ class HealthCheck {
      * @param {number} port - Port to listen on
      */
     startHealthServer(port = 3000) {
-        const express = require('express');
         const app = express();
 
         app.get('/health', async (req, res) => {

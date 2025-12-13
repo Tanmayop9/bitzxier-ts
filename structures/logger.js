@@ -18,8 +18,8 @@ module.exports = class Logger {
     };
 
     static shouldLog(type) {
-        const currentLevel = this.levels[this.logLevel] ?? 2;
-        const messageLevel = this.levels[type] ?? 2;
+        const currentLevel = this.levels[this.logLevel] ?? this.levels.info;
+        const messageLevel = this.levels[type] ?? this.levels.info;
         return messageLevel <= currentLevel;
     }
 
