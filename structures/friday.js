@@ -11,10 +11,6 @@ const CommandHandler = require('./CommandHandler');
 const PremiumManager = require('./PremiumManager');
 const HealthCheck = require('./HealthCheck');
 const CacheManager = require('./CacheManager');
-const AutoUpdater = require('./AutoUpdater');
-const FeatureManager = require('./FeatureManager');
-const CommandScheduler = require('./CommandScheduler');
-const AnnouncementManager = require('./AnnouncementManager');
 const { COLORS, EMOJIS, VERSION } = require('./constants');
 module.exports = class Friday extends Client {
     constructor() {
@@ -75,10 +71,6 @@ module.exports = class Friday extends Client {
         this.premiumManager = new PremiumManager(this);
         this.healthCheck = new HealthCheck(this);
         this.cacheManager = new CacheManager();
-        this.autoUpdater = new AutoUpdater(this);
-        this.featureManager = new FeatureManager(this);
-        this.commandScheduler = new CommandScheduler(this);
-        this.announcementManager = new AnnouncementManager(this);
 
         // Use centralized error handler for client errors
         this.on('error', (error) => {

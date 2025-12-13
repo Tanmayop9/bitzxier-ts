@@ -55,22 +55,6 @@ const client = new Friday();
         client.logger.log('Connecting to Discord...');
         await client.login(config.TOKEN);
 
-        // Initialize feature manager
-        client.logger.log('Initializing feature manager...');
-        await client.featureManager.initialize();
-
-        // Initialize command scheduler
-        client.logger.log('Initializing command scheduler...');
-        await client.commandScheduler.initialize();
-
-        // Initialize announcement manager
-        client.logger.log('Initializing announcement manager...');
-        await client.announcementManager.initialize();
-
-        // Initialize auto-updater (after announcement manager)
-        client.logger.log('Initializing auto-updater...');
-        await client.autoUpdater.initialize();
-
         // Start health check server if enabled
         if (process.env.HEALTH_CHECK_PORT) {
             const port = parseInt(process.env.HEALTH_CHECK_PORT, 10);

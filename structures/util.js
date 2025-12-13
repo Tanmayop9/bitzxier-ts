@@ -323,16 +323,6 @@ module.exports = class Util {
         else return true
     }
 
-    // Helper function to filter out disabled commands
-    filterEnabledCommands(commands, category) {
-        return commands.filter((cmd) => {
-            // Check if command is disabled by scheduler
-            const isDisabled = this.client.commandScheduler?.isCommandDisabled(cmd.name);
-            // Filter by category and enabled status
-            return (cmd.category === category || cmd.directory === category) && !isDisabled;
-        });
-    }
-
     async selectMenuHandle(interaction) {
         try {
             let options = interaction.values
@@ -353,11 +343,7 @@ module.exports = class Util {
                 if (funny === 'antinuke') {
                     let cmdList = [];
                     interaction.client.commands
-                    .filter((cmd) => {
-                        // Filter out disabled commands
-                        const isDisabled = interaction.client.commandScheduler?.isCommandDisabled(cmd.name);
-                        return cmd.category === 'security' && !isDisabled;
-                    })
+                    .filter((cmd) => cmd.category === 'security')
                     .forEach((cmd) => {
                         if (cmd.subcommand && cmd.subcommand.length) {
                             cmdList.push(`\`${cmd.name}\``);
@@ -397,11 +383,7 @@ module.exports = class Util {
             if (funny === 'moderation') {
                     let cmdList = [];
                     interaction.client.commands
-                        .filter((cmd) => {
-                            // Filter out disabled commands
-                            const isDisabled = interaction.client.commandScheduler?.isCommandDisabled(cmd.name);
-                            return cmd.category === 'mod' && !isDisabled;
-                        })
+                        .filter((cmd) => cmd.category === 'mod')
                         .forEach((cmd) => {
                             if (cmd.subcommand && cmd.subcommand.length) {
                                 cmdList.push(`\`${cmd.name}\``);
@@ -440,11 +422,7 @@ module.exports = class Util {
             if (funny === 'automod') {
                 let cmdList = [];
                 interaction.client.commands
-                .filter((cmd) => {
-                    // Filter out disabled commands
-                    const isDisabled = interaction.client.commandScheduler?.isCommandDisabled(cmd.name);
-                    return cmd.category === 'automod' && !isDisabled;
-                })
+                .filter((cmd) => cmd.category === 'automod')
                 .forEach((cmd) => {
                     if (cmd.subcommand && cmd.subcommand.length) {
                         cmdList.push(`\`${cmd.name}\``);
