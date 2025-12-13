@@ -72,10 +72,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/des/"
+        "url": "git+https://github.com/Tanmayop9/soward-test.git"
     },
-    "keywords": [],
-    "author": "",
+    "keywords": ["discord", "bot", "friday", "discord-bot", "moderation", "antinuke"],
+    "author": "Tanmay (Recoded by Nerox Studios)",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/des"
