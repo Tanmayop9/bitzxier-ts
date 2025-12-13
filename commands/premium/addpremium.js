@@ -1,3 +1,10 @@
+/**
+ * @author Tanmay
+ * @recoded Nerox Studios
+ * @version v2-alpha-1
+ * @description Add premium access to a user
+ */
+
 const { EmbedBuilder } = require('discord.js')
 const config = require(`${process.cwd()}/config.json`)
 
@@ -5,22 +12,36 @@ module.exports = {
     name: 'addpremium',
     aliases: ['addprem', 'premium+'],
     category: 'Owner',
+    description: 'Grant premium access to a user',
+    usage: '<user_id> [days] [server_count]',
     run: async (client, message, args) => {
         if (!config.premium.includes(message.author.id)) return
         
-        const embed = client.util.embed().setColor(client.color)
+        const embed = client.util.embed()
+            .setColor(client.color)
+            .setAuthor({
+                name: 'Premium Management',
+                iconURL: client.user.displayAvatarURL()
+            })
         
         if (!args[0]) {
             return message.channel.send({
-                embeds: [embed.setDescription(`${client.emoji.cross} Please provide a user ID`)]
+                embeds: [embed
+                    .setDescription(
+                        `${client.emoji.cross} **Invalid Usage**\n\n` +
+                        `**Usage:** \`addpremium <user_id> [days] [server_count]\`\n` +
+                        `**Example:** \`addpremium 123456789 30 5\``
+                    )
+                ]
             })
         }
 
+        let user;
         try {
-            await client.users.fetch(args[0])
+            user = await client.users.fetch(args[0])
         } catch (error) {
             return message.channel.send({
-                embeds: [embed.setDescription(`${client.emoji.cross} Invalid user ID`)]
+                embeds: [embed.setDescription(`${client.emoji.cross} **Error:** Invalid user ID provided`)]
             })
         }
 
@@ -35,11 +56,17 @@ module.exports = {
 
         return message.channel.send({
             embeds: [
-                embed.setDescription(
-                    `${client.emoji.tick} <@${args[0]}> has been added as a premium user\n\n` +
-                    `**Premium Count:** \`${count}\`\n` +
-                    `**Expires:** <t:${Math.round(time / 1000)}:R>`
-                )
+                embed
+                    .setTitle('✅ Premium Added')
+                    .setDescription(
+                        `Successfully granted premium access to ${user.tag}\n\n` +
+                        `${client.emoji.dot} **User:** <@${args[0]}>\n` +
+                        `${client.emoji.dot} **Duration:** \`${days} days\`\n` +
+                        `${client.emoji.dot} **Server Limit:** \`${count === 0 ? 'Unlimited' : count}\`\n` +
+                        `${client.emoji.dot} **Expires:** <t:${Math.round(time / 1000)}:R>`
+                    )
+                    .setFooter({ text: 'Author: Tanmay | Recoded by Nerox Studios | v2-alpha-1' })
+                    .setTimestamp()
             ]
         })
     }

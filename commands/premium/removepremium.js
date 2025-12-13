@@ -1,34 +1,58 @@
+/**
+ * @author Tanmay
+ * @recoded Nerox Studios
+ * @version v2-alpha-1
+ * @description Remove premium access from a user
+ */
+
 const { EmbedBuilder } = require('discord.js')
 const config = require(`${process.cwd()}/config.json`)
 
 module.exports = {
     name: 'removepremium',
-    aliases: ['remprem', 'premium-'],
+    aliases: ['remprem', 'premium-', 'delpremium'],
     category: 'Owner',
+    description: 'Revoke premium access from a user',
+    usage: '<user_id>',
     run: async (client, message, args) => {
         if (!config.premium.includes(message.author.id)) return
         
-        const embed = client.util.embed().setColor(client.color)
+        const embed = client.util.embed()
+            .setColor(client.color)
+            .setAuthor({
+                name: 'Premium Management',
+                iconURL: client.user.displayAvatarURL()
+            })
         
         if (!args[0]) {
             return message.channel.send({
-                embeds: [embed.setDescription(`${client.emoji.cross} Please provide a user ID`)]
+                embeds: [embed
+                    .setDescription(
+                        `${client.emoji.cross} **Invalid Usage**\n\n` +
+                        `**Usage:** \`removepremium <user_id>\`\n` +
+                        `**Example:** \`removepremium 123456789\``
+                    )
+                ]
             })
         }
 
+        let user;
         try {
-            await client.users.fetch(args[0])
+            user = await client.users.fetch(args[0])
         } catch (error) {
             return message.channel.send({
-                embeds: [embed.setDescription(`${client.emoji.cross} Invalid user ID`)]
+                embeds: [embed.setDescription(`${client.emoji.cross} **Error:** Invalid user ID provided`)]
             })
         }
 
-        const use = await client.db.get(`uprem_${args[0]}`)
-        if (!use) {
+        const isPremium = await client.db.get(`uprem_${args[0]}`)
+        if (!isPremium) {
             return message.channel.send({
                 embeds: [
-                    embed.setDescription(`${client.emoji.cross} <@${args[0]}> is not a premium user`)
+                    embed.setDescription(
+                        `${client.emoji.cross} **Not Premium**\n\n` +
+                        `<@${args[0]}> doesn't have premium access.`
+                    )
                 ]
             })
         }
@@ -40,7 +64,15 @@ module.exports = {
 
         return message.channel.send({
             embeds: [
-                embed.setDescription(`${client.emoji.tick} <@${args[0]}> has been removed from premium users`)
+                embed
+                    .setTitle('❌ Premium Removed')
+                    .setDescription(
+                        `Successfully revoked premium access from ${user.tag}\n\n` +
+                        `${client.emoji.dot} **User:** <@${args[0]}>\n` +
+                        `${client.emoji.dot} **Status:** Premium access revoked`
+                    )
+                    .setFooter({ text: 'Author: Tanmay | Recoded by Nerox Studios | v2-alpha-1' })
+                    .setTimestamp()
             ]
         })
     }
