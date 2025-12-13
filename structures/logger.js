@@ -1,80 +1,77 @@
-const chalk = require('chalk')
-const moment = require('moment')
+const chalk = require('chalk');
+const moment = require('moment');
 
+/**
+ * Modern logger with structured logging and log levels
+ */
 module.exports = class Logger {
+    static logLevel = process.env.LOG_LEVEL || 'info';
+    static levels = {
+        error: 0,
+        warn: 1,
+        info: 2,
+        ready: 2,
+        event: 3,
+        cmd: 3,
+        debug: 4,
+        shard: 3,
+    };
+
+    static shouldLog(type) {
+        const currentLevel = this.levels[this.logLevel] ?? 2;
+        const messageLevel = this.levels[type] ?? 2;
+        return messageLevel <= currentLevel;
+    }
+
     static log(content, type = 'log') {
-        const timestamp = `[${moment()
-            .utcOffset('+05:30')
-            .format('DD.MM.yyyy hh:mmA')}]:`
-        switch (type) {
-            case 'log': {
-                return console.log(
-                    `${timestamp} ${chalk.bgBlue(
-                        type.toUpperCase()
-                    )} ${content} `
-                )
-            }
-            case 'warn': {
-                return console.log(
-                    `${timestamp} ${chalk.black.bgYellow(
-                        type.toUpperCase()
-                    )} ${content} `
-                )
-            }
-            case 'error': {
-                return console.log(
-                    `${timestamp} ${chalk.bgRed(
-                        type.toUpperCase()
-                    )} ${content} `
-                )
-            }
-            case 'debug': {
-                return console.log(
-                    `${timestamp} ${chalk.green(
-                        type.toUpperCase()
-                    )} ${content} `
-                )
-            }
-            case 'event': {
-                return console.log(
-                    `${timestamp} ${chalk.black.bgWhite(
-                        type.toUpperCase()
-                    )} ${content}`
-                )
-            }
-            case 'cmd': {
-                return console.log(
-                    `${timestamp} ${chalk.black.bgWhite(
-                        type.toUpperCase()
-                    )} ${content}`
-                )
-            }
-            case 'ready': {
-                return console.log(
-                    `${timestamp} ${chalk.black.bgGreen(
-                        type.toUpperCase()
-                    )} ${content}`
-                )
-            }
-            case 'shard': {
-                return console.log(
-                    `${timestamp} ${chalk.black.bgGreen(
-                        type.toUpperCase()
-                    )} ${content}`
-                )
-            }
+        // Check if we should log this level
+        if (!this.shouldLog(type)) {
+            return;
         }
+
+        const timestamp = `[${moment().utcOffset('+05:30').format('DD.MM.yyyy hh:mmA')}]:`;
+
+        const logConfig = {
+            log: { color: chalk.bgBlue, label: 'LOG' },
+            warn: { color: chalk.black.bgYellow, label: 'WARN' },
+            error: { color: chalk.bgRed, label: 'ERROR' },
+            debug: { color: chalk.green, label: 'DEBUG' },
+            event: { color: chalk.black.bgWhite, label: 'EVENT' },
+            cmd: { color: chalk.black.bgWhite, label: 'CMD' },
+            ready: { color: chalk.black.bgGreen, label: 'READY' },
+            shard: { color: chalk.black.bgGreen, label: 'SHARD' },
+            info: { color: chalk.bgCyan, label: 'INFO' },
+        };
+
+        const config = logConfig[type] || logConfig.log;
+        console.log(`${timestamp} ${config.color(config.label)} ${content}`);
     }
+
     static error(content) {
-        return this.log(content, 'error')
+        return this.log(content, 'error');
     }
+
     static warn(content) {
-        return this.log(content, 'warn')
+        return this.log(content, 'warn');
     }
+
     static debug(content) {
-        return this.log(content, 'debug')
+        return this.log(content, 'debug');
     }
+
     static cmd(content) {
-        return this.log(content, 'cmd')
+        return this.log(content, 'cmd');
+    }
+
+    static info(content) {
+        return this.log(content, 'info');
+    }
+
+    static event(content) {
+        return this.log(content, 'event');
+    }
+
+    static ready(content) {
+        return this.log(content, 'ready');
     }
 }

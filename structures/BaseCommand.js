@@ -5,7 +5,27 @@
  * @description Base command class for all commands
  */
 
+/**
+ * Base class for all bot commands
+ * @class BaseCommand
+ */
 class BaseCommand {
+    /**
+     * Create a new command
+     * @param {Object} options - Command options
+     * @param {string} [options.name='unknown'] - Command name
+     * @param {string[]} [options.aliases=[]] - Command aliases
+     * @param {string} [options.category='misc'] - Command category
+     * @param {string} [options.description='No description provided'] - Command description
+     * @param {string} [options.usage=''] - Command usage syntax
+     * @param {string[]} [options.examples=[]] - Usage examples
+     * @param {number} [options.cooldown=3] - Cooldown in seconds
+     * @param {boolean} [options.premium=false] - Premium only command
+     * @param {boolean} [options.ownerOnly=false] - Owner only command
+     * @param {boolean} [options.guildOnly=true] - Guild only command
+     * @param {string[]} [options.userPermissions=[]] - Required user permissions
+     * @param {string[]} [options.botPermissions=[]] - Required bot permissions
+     */
     constructor(options = {}) {
         this.name = options.name || 'unknown';
         this.aliases = options.aliases || [];
@@ -19,7 +39,7 @@ class BaseCommand {
         this.guildOnly = options.guildOnly || true;
         this.permissions = {
             user: options.userPermissions || [],
-            bot: options.botPermissions || []
+            bot: options.botPermissions || [],
         };
     }
 

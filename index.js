@@ -54,6 +54,12 @@ const client = new Friday();
         // Login to Discord
         client.logger.log('Connecting to Discord...');
         await client.login(config.TOKEN);
+
+        // Start health check server if enabled
+        if (process.env.HEALTH_CHECK_PORT) {
+            const port = parseInt(process.env.HEALTH_CHECK_PORT, 10);
+            client.healthCheck.startHealthServer(port);
+        }
     } catch (error) {
         console.error('Fatal error during initialization:', error);
         process.exit(1);

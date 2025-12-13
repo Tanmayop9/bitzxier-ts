@@ -7,6 +7,9 @@ const Sql = require('better-sqlite3');
 const { Destroyer } = require('destroyer-fast-cache');
 const { ErrorHandler } = require('./ErrorHandler');
 const ConfigValidator = require('./ConfigValidator');
+const CommandHandler = require('./CommandHandler');
+const PremiumManager = require('./PremiumManager');
+const HealthCheck = require('./HealthCheck');
 module.exports = class Friday extends Client {
     constructor() {
         super({
@@ -55,8 +58,11 @@ module.exports = class Friday extends Client {
             ? new WebhookClient({ url: this.config.ERROR_WEBHOOK_URL })
             : null;
 
-        // Initialize error handler for centralized error management
+        // Initialize modern helper classes
         this.errorHandler = new ErrorHandler(this);
+        this.commandHandler = new CommandHandler(this);
+        this.premiumManager = new PremiumManager(this);
+        this.healthCheck = new HealthCheck(this);
 
         // Use centralized error handler for client errors
         this.on('error', (error) => {

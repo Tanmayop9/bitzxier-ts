@@ -1,0 +1,9 @@
+node_modules
+data-sets
+Database
+logs
+*.log
+dist
+build
+coverage
+*.backup
