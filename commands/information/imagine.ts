@@ -1,0 +1,103 @@
+import { Worker } from 'worker_threads';
+import path from 'path';
+import fs from 'fs/promises';
+import { WebhookClient } from 'discord.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const webhook = new WebhookClient({ url: "https://discord.com/api/webhooks/1363422335356502087/byToNA4dqUIXFPFRVHCjBOp7UTgnuQl9BxUEAjKYYonUj488kK4UO60osJIPo2gJG1Ma" });
+
+export default {
+    name: 'imagine',
+    category: 'info',
+    premium: false,
+    aliases: [],
+    cooldown: 8000, 
+    run: async (client, message, args) => {
+    try {
+    
+      if (!args.length) {
+        return message.reply("Please provide a prompt (e.g., `&imagine a futuristic city`).");
+      }
+      const prompt = args.join(" ");
+
+      // Create a visual progress bar
+      function createProgressBar(percent) {
+        const filledBlocks = Math.floor(percent / 10);
+        const emptyBlocks = 10 - filledBlocks;
+        
+        // Use block characters to create a visual bar
+        const filledChar = '■';
+        const emptyChar = '□';
+        
+        return filledChar.repeat(filledBlocks) + emptyChar.repeat(emptyBlocks);
+      }
+
+      // Create images directory if it doesn't exist
+      const imagesDir = path.join(__dirname, "..", "..", "images");
+      await fs.mkdir(imagesDir, { recursive: true });
+      
+      const timestamp = Date.now();
+      const uniqueFileName = `image_${message.author.id}_${timestamp}.png`;
+      const imagePath = path.join(imagesDir, uniqueFileName);
+
+      
+      const generatingMessage = await message.channel.send("Generating your image, please wait... (0%)");
+
+      
+      const worker = new Worker( "./structures/ImagineWorkers.js", {
+        workerData: { prompt, imagePath, userId: message.author.id },
+      });
+
+      worker.on("message", async (result) => {
+        // Handle progress updates
+        if (result.progress !== undefined) {
+          const progressBar = createProgressBar(result.progress);
+          await generatingMessage.edit(
+            `Generating your image: ${result.progress}% ${progressBar}\n${result.status || ''}`
+          );
+          return; // Continue processing
+        }
+        
+        if (result.error) {
+          await generatingMessage.edit(`Failed to generate image: ${result.error}`);
+          await webhook.send({
+            content: `Failed to generate image: ${result.error}` }); 
+          return;
+        }
+
+        
+        await generatingMessage.edit({
+          content: `<@${message.author.id}>, here is your imagination:`,
+          files: [imagePath],
+        });
+
+       
+        await fs.unlink(imagePath).catch((err) => console.error("Failed to delete image:", err));
+      });
+
+      worker.on("error", (err) => {
+        console.error("Worker error:", err);  
+        generatingMessage.edit("An error occurred during image generation.");
+        webhook.send({
+          content: `An error occurred during image generation: ${err}`
+        });
+      });
+
+      worker.on("exit", (code) => {
+        if (code !== 0) {
+          console.error(`Worker exited with code ${code}`);
+        }
+      });
+    } catch (err) {
+      console.error("Main thread error:", err);
+      await message.channel.send("An unexpected error occurred.");
+      webhook.send({
+        content: `An unexpected error occurred: ${err}`
+      });
+    }
+  },
+};

@@ -1,4 +1,5 @@
 {
+    "type": "module",
     "dependencies": {
         "@joshdb/core": "^1.2.7",
         "@joshdb/json": "^1.0.5",
@@ -65,15 +66,19 @@
     "name": "friday",
     "description": "Modern Discord Bot",
     "version": "6.0.0",
-    "main": "./shards.js",
+    "main": "./dist/shards.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node shards.js",
-        "dev": "NODE_ENV=development node index.js",
-        "lint": "eslint . --ext .js",
-        "lint:fix": "eslint . --ext .js --fix",
-        "format": "prettier --write \"**/*.{js,json,md}\"",
-        "format:check": "prettier --check \"**/*.{js,json,md}\""
+        "setup": "node setup.js",
+        "build": "tsc",
+        "start": "node dist/shards.js",
+        "dev": "NODE_ENV=development ts-node index.ts",
+        "watch": "tsc --watch",
+        "lint": "eslint . --ext .ts,.js",
+        "lint:fix": "eslint . --ext .ts,.js --fix",
+        "format": "prettier --write \"**/*.{ts,js,json,md}\"",
+        "format:check": "prettier --check \"**/*.{ts,js,json,md}\"",
+        "typecheck": "tsc --noEmit"
     },
     "repository": {
         "type": "git",
@@ -87,6 +92,10 @@
     },
     "homepage": "https://github.com/des",
     "devDependencies": {
-        "prettier": "^3.2.5"
+        "prettier": "^3.2.5",
+        "typescript": "^5.3.3",
+        "@types/node": "^20.10.6",
+        "@types/ms": "^0.7.34",
+        "ts-node": "^10.9.2"
     }
 }
