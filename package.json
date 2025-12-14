@@ -65,19 +65,16 @@
     "name": "friday",
     "description": "Modern Discord Bot",
     "version": "6.0.0",
-    "main": "./dist/shards.js",
+    "main": "./src/shards.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "setup": "node setup.js",
-        "build": "tsc",
-        "start": "node dist/shards.js",
-        "dev": "NODE_ENV=development ts-node src/index.ts",
-        "watch": "tsc --watch",
-        "lint": "eslint src --ext .ts",
-        "lint:fix": "eslint src --ext .ts --fix",
-        "format": "prettier --write \"src/**/*.{ts,json}\" \"*.{js,json,md}\"",
-        "format:check": "prettier --check \"src/**/*.{ts,json}\" \"*.{js,json,md}\"",
-        "typecheck": "tsc --noEmit"
+        "start": "node src/shards.js",
+        "dev": "NODE_ENV=development node src/index.js",
+        "lint": "eslint src --ext .js",
+        "lint:fix": "eslint src --ext .js --fix",
+        "format": "prettier --write \"src/**/*.{js,json}\" \"*.{js,json,md}\"",
+        "format:check": "prettier --check \"src/**/*.{js,json}\" \"*.{js,json,md}\""
     },
     "repository": {
         "type": "git",
@@ -91,10 +88,6 @@
     },
     "homepage": "https://github.com/des",
     "devDependencies": {
-        "prettier": "^3.2.5",
-        "typescript": "^5.3.3",
-        "@types/node": "^20.10.6",
-        "@types/ms": "^0.7.34",
-        "ts-node": "^10.9.2"
+        "prettier": "^3.2.5"
     }
 }
