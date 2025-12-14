@@ -2,6 +2,13 @@ import { EmbedBuilder, Collection, ButtonStyle, ActionRowBuilder, ButtonBuilder,
 import { getSettingsar } from '../models/autorole';
 // Config is loaded asynchronously from client.config
 let globalCooldown;
+
+// Helper function to check if content contains a link
+function containsLink(content) {
+    const linkRegex = /(https?:\/\/[^\s]+)/gi;
+    return linkRegex.test(content);
+}
+
 export default class Util {
     client;
     blacklistCache;

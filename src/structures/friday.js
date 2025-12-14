@@ -45,7 +45,7 @@ export default class Friday extends Client {
         this.ready = false;
         this.rateLimits = new Collection();
         this.commands = new Collection();
-        this.categories = fs.readdirSync(`${process.cwd()}/dist/commands/`);
+        this.categories = fs.readdirSync(`${process.cwd()}/src/commands/`);
         // Use constants for emojis and colors
         this.emoji = EMOJIS;
         this.color = COLORS.PRIMARY;
@@ -136,32 +136,32 @@ export default class Friday extends Client {
         this.logger.log('Using JoshDB for all data storage', 'ready');
     }
     async loadEvents() {
-        const files = fs.readdirSync(`${process.cwd()}/dist/events/`);
+        const files = fs.readdirSync(`${process.cwd()}/src/events/`);
         for (const file of files) {
             const eventName = file.split('.')[0];
-            const { default: eventHandler } = await import(`${process.cwd()}/dist/events/${file}`);
+            const { default: eventHandler } = await import(`${process.cwd()}/src/events/${file}`);
             eventHandler(this);
             this.logger.log(`Updated Event ${eventName}.`, 'event');
         }
     }
     async loadlogs() {
-        const files = fs.readdirSync(`${process.cwd()}/dist/logs/`);
+        const files = fs.readdirSync(`${process.cwd()}/src/logs/`);
         for (const file of files) {
             const logevent = file.split('.')[0];
-            const { default: logHandler } = await import(`${process.cwd()}/dist/logs/${file}`);
+            const { default: logHandler } = await import(`${process.cwd()}/src/logs/${file}`);
             logHandler(this);
             this.logger.log(`Updated Logs ${logevent}.`, 'event');
         }
     }
     async loadMain() {
         const commandFiles = [];
-        const commandDirectories = fs.readdirSync(`${process.cwd()}/dist/commands`);
+        const commandDirectories = fs.readdirSync(`${process.cwd()}/src/commands`);
         for (const directory of commandDirectories) {
             const files = fs
-                .readdirSync(`${process.cwd()}/dist/commands/${directory}`)
+                .readdirSync(`${process.cwd()}/src/commands/${directory}`)
                 .filter((file) => file.endsWith('.js'));
             for (const file of files) {
-                commandFiles.push(`${process.cwd()}/dist/commands/${directory}/${file}`);
+                commandFiles.push(`${process.cwd()}/src/commands/${directory}/${file}`);
             }
         }
         for (const value of commandFiles) {
