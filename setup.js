@@ -21,7 +21,7 @@ const SHUTDOWN_TIMEOUT = 10000; // 10 seconds
  * @param {string} command - Command to execute
  * @param {string[]} args - Command arguments
  * @param {string} description - Description of the step
- * @returns {Promise<number>} Exit code
+ * @returns {Promise<number>} Resolves with exit code on success, rejects with Error on failure
  */
 function executeCommand(command, args, description) {
     return new Promise((resolve, reject) => {
@@ -86,13 +86,9 @@ async function setup() {
             process.exit(1);
         });
 
-        botProcess.on('close', (code) => {
-            console.log(`\nBot process exited with code ${code}`);
-            process.exit(code || 0);
-        });
-
         // Handle termination signals with graceful shutdown
         let isShuttingDown = false;
+        let forceKillTimeout = null;
         
         const shutdown = (signal) => {
             if (isShuttingDown) return;
@@ -102,12 +98,21 @@ async function setup() {
             botProcess.kill(signal);
             
             // Force kill after timeout if process hasn't exited
-            setTimeout(() => {
+            forceKillTimeout = setTimeout(() => {
                 console.log('Force killing process...');
                 botProcess.kill('SIGKILL');
                 process.exit(1);
             }, SHUTDOWN_TIMEOUT);
         };
+
+        botProcess.on('close', (code) => {
+            // Clear force kill timeout if process exits gracefully
+            if (forceKillTimeout) {
+                clearTimeout(forceKillTimeout);
+            }
+            console.log(`\nBot process exited with code ${code}`);
+            process.exit(code || 0);
+        });
 
         process.on('SIGINT', () => shutdown('SIGINT'));
         process.on('SIGTERM', () => shutdown('SIGTERM'));
