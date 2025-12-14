@@ -368,4 +368,4 @@ If you need assistance with configuration:
 
 ---
 
-*Last Updated: December 2025*
+*Last Updated: December 2024*

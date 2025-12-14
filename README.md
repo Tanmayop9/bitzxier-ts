@@ -17,7 +17,7 @@ For detailed configuration instructions, see **[CONFIG.md](./CONFIG.md)** - Comp
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Tanmayop9/bitzxier-ts.git
+   git clone <your-repository-url>
    cd bitzxier-ts
    ```
 
