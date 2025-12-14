@@ -74,4 +74,4 @@ class ConfigValidator {
     }
 }
 
-module.exports = ConfigValidator;
+export default ConfigValidator;

@@ -209,7 +209,7 @@ export default class Friday extends Client {
         for (const directory of commandDirectories) {
             const files = fs
                 .readdirSync(`${process.cwd()}/commands/${directory}`)
-                .filter((file) => file.endsWith('.js'))
+                .filter((file) => file.endsWith('.ts') || file.endsWith('.js'))
 
             for (const file of files) {
                 commandFiles.push(

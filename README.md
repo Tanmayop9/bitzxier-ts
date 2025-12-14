@@ -52,19 +52,42 @@ Friday is a powerful, modern Discord bot built with discord.js v14, featuring ad
 - ✅ Modern JavaScript patterns
 - ✅ Better code organization
 
+### TypeScript Migration
+- ✅ **Full TypeScript conversion** - All 207 files converted to TypeScript
+- ✅ **Type safety** - Better IDE support and error checking
+- ✅ **Modern tooling** - TypeScript 5.3.3 with ES2022 target
+- ✅ **Automated setup** - New setup.js script for easy deployment
+
 ### Updated Dependencies
 - ✅ **discord.js v14.25.1** (latest v14)
 - ✅ **@discordjs/voice v0.17.0**
 - ✅ **discord-hybrid-sharding v2.2.0**
+- ✅ **TypeScript 5.3.3** - Type-safe development
 
 ## 📦 Installation
 
 ### Prerequisites
-- Node.js v20 or higher
+- Node.js v14.13.0 or higher (v20+ recommended)
 - npm or yarn package manager
 - Discord Bot Token
 
-### Setup
+### Quick Setup (Recommended)
+
+**One-command setup that does everything:**
+
+```bash
+npm run setup
+```
+
+This automated setup script will:
+- ✅ Check your environment
+- ✅ Install all dependencies
+- ✅ Build TypeScript to JavaScript
+- ✅ Start the bot automatically
+
+See [SETUP_GUIDE.md](./SETUP_GUIDE.md) for detailed setup instructions.
+
+### Manual Setup
 
 1. **Clone the repository**
 ```bash
@@ -72,29 +95,35 @@ git clone https://github.com/Tanmayop9/soward-test.git
 cd soward-test
 ```
 
-2. **Install dependencies**
-```bash
-npm install --ignore-scripts --legacy-peer-deps
+2. **Configure the bot**
+
+Create `.env` file:
+```env
+TOKEN=your_discord_bot_token
+ERROR_WEBHOOK_URL=your_error_webhook
+RATELIMIT_WEBHOOK_URL=your_ratelimit_webhook
+LOG_LEVEL=info
 ```
 
-3. **Configure the bot**
 Edit `config.json`:
 ```json
 {
     "TOKEN": "your-bot-token",
     "WEBHOOK_URL": "your-webhook-url",
     "owner": ["your-user-id"],
-    "premium": ["premium-user-ids"],
-    "friday": []
+    "MONGO_DB": "mongodb-connection-string",
+    "ERROR_WEBHOOK_URL": "error-webhook",
+    "RATELIMIT_WEBHOOK_URL": "ratelimit-webhook"
 }
 ```
 
-4. **Create data directory**
+3. **Install and build**
 ```bash
-mkdir -p data-sets Database
+npm install
+npm run build
 ```
 
-5. **Start the bot**
+4. **Start the bot**
 ```bash
 npm start
 ```
@@ -123,8 +152,9 @@ friday/
 ├── data-sets/         # JoshDB storage
 ├── Database/          # SQLite databases
 ├── config.json        # Configuration
-├── index.js           # Entry point
-└── shards.js          # Cluster manager
+├── index.ts           # Entry point (TypeScript)
+├── shards.ts          # Cluster manager (TypeScript)
+└── dist/              # Compiled JavaScript output
 ```
 
 ### Technology Stack

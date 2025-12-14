@@ -211,4 +211,4 @@ class CacheManager {
     }
 }
 
-module.exports = CacheManager;
+export default CacheManager;

@@ -48,7 +48,7 @@ export default {
       const generatingMessage = await message.channel.send("Generating your image, please wait... (0%)");
 
       
-      const worker = new Worker( "./structures/ImagineWoerkers.js", {
+      const worker = new Worker( "./structures/ImagineWorkers.js", {
         workerData: { prompt, imagePath, userId: message.author.id },
       });
 

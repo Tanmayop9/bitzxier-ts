@@ -41,4 +41,4 @@ class BaseEvent {
     }
 }
 
-module.exports = BaseEvent;
+export default BaseEvent;

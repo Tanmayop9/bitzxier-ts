@@ -66,9 +66,10 @@
     "name": "friday",
     "description": "Modern Discord Bot",
     "version": "6.0.0",
-    "main": "./shards.js",
+    "main": "./dist/shards.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
+        "setup": "node setup.js",
         "build": "tsc",
         "start": "node dist/shards.js",
         "dev": "NODE_ENV=development ts-node index.ts",

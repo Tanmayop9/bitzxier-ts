@@ -46,8 +46,8 @@ Successfully converted the entire Friday Discord Bot codebase from CommonJS (req
 ## Files Affected
 
 ### Core Files
-- index.js
-- shards.js
+- index.ts (compiled to dist/index.js)
+- shards.ts (compiled to dist/shards.js)
 - package.json
 
 ### Structures (11 files)

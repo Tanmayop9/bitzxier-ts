@@ -131,4 +131,4 @@ class PremiumManager {
     }
 }
 
-module.exports = PremiumManager;
+export default PremiumManager;

@@ -123,7 +123,7 @@ This document summarizes the comprehensive modernization effort applied to the F
   "lint:fix": "eslint . --ext .js --fix",
   "format": "prettier --write \"**/*.{js,json,md}\"",
   "format:check": "prettier --check \"**/*.{js,json,md}\"",
-  "dev": "NODE_ENV=development node index.js"
+  "dev": "NODE_ENV=development ts-node index.ts"
 }
 ```
 

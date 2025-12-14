@@ -166,4 +166,4 @@ class BaseCommand {
     }
 }
 
-module.exports = BaseCommand;
+export default BaseCommand;
