@@ -72,12 +72,12 @@
         "setup": "node setup.js",
         "build": "tsc",
         "start": "node dist/shards.js",
-        "dev": "NODE_ENV=development ts-node index.ts",
+        "dev": "NODE_ENV=development ts-node src/index.ts",
         "watch": "tsc --watch",
-        "lint": "eslint . --ext .ts,.js",
-        "lint:fix": "eslint . --ext .ts,.js --fix",
-        "format": "prettier --write \"**/*.{ts,js,json,md}\"",
-        "format:check": "prettier --check \"**/*.{ts,js,json,md}\"",
+        "lint": "eslint src --ext .ts",
+        "lint:fix": "eslint src --ext .ts --fix",
+        "format": "prettier --write \"src/**/*.{ts,json}\" \"*.{js,json,md}\"",
+        "format:check": "prettier --check \"src/**/*.{ts,json}\" \"*.{js,json,md}\"",
         "typecheck": "tsc --noEmit"
     },
     "repository": {
