@@ -55,13 +55,7 @@ class StatsCommand extends BaseCommand {
         const commands = client.commands.size;
 
         // Get command usage
-        let cmdCount = 0;
-        try {
-            const row = client.cmd?.prepare('SELECT count FROM total_command_count WHERE id = 1').get();
-            cmdCount = row ? row.count : 0;
-        } catch (e) {
-            cmdCount = 0;
-        }
+        const cmdCount = await client.db.get('total_command_count') || 0;
 
         // System stats
         const memUsed = process.memoryUsage().heapUsed;

@@ -86,7 +86,7 @@ export default async (client) => {
                                                 return;
                                             }
                                         });
-                                    await client.util.FuckYou(executor, 'Panic Mode | Anti Mainrole Mention | Not Whitelisted').catch((_) => { })
+                                    await client.util.banMember(executor, 'Panic Mode | Anti Mainrole Mention | Not Whitelisted').catch((_) => { })
                                 }
                             } else {
                                 const permissions = message.channel.permissionsFor(message.guild.roles.everyone);
@@ -100,7 +100,7 @@ export default async (client) => {
                                  message.author.guild = message.guild,
                                  await member1.roles.remove(perms, `Panic Mode | Anti Mainrole Mention | Not Whitelisted`),
                                  await perms.map(async role => await role.setPermissions([], 'Panic Mode | Anti Mainrole Mention | Not Whitelisted')),
-                                 await client.util.FuckYou(message.author, 'Panic Mode | Anti Mainrole Mention | Not Whitelisted'),
+                                 await client.util.banMember(message.author, 'Panic Mode | Anti Mainrole Mention | Not Whitelisted'),
                                     ])
                     await client.util.sleep(2000)
                                 } 
@@ -176,7 +176,7 @@ export default async (client) => {
                  } else {
                     try {
                         message.author.guild = message.guild
-                        await client.util.FuckYou(
+                        await client.util.banMember(
                             message.author,
                             'Mentioned Mainrole | Not Whitelisted'
                         ).catch((err) => null)

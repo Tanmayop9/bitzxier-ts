@@ -56,7 +56,7 @@ try {
         const whitelist = await client.db.get(whitelistKey) || { user: [], role: [], channel: [] };
         
         if(!args[0]) {
-            const saixd = client.util.embed()
+            const embed = client.util.embed()
             .setColor(client.color)
             .setAuthor({
                 name: message.author.tag,
@@ -117,7 +117,7 @@ try {
                     value: `**Reset the Automod whitelist channel Configuration**\n‎ `
                 }
             ])
-        return message.channel.send({ embeds : [saixd]})
+        return message.channel.send({ embeds : [embed]})
         } else if (subcommand === 'whitelist') {
              if (action === 'add') {
                 let id;
@@ -255,7 +255,7 @@ try {
                     id = channelMention.id;
                     itemName = channelMention.name; // Store channel name for feedback
                  } if(!['user', 'role', 'channel'].includes(type) || !type) {
-                        const saixxxd = client.util.embed()
+                        const embed = client.util.embed()
             .setColor(client.color)
             .setAuthor({
                 name: message.author.tag,
@@ -316,7 +316,7 @@ try {
                     value: `**Reset the Automod whitelist channel Configuration**\n‎ `
                 }
             ])
-                return message.channel.send({ embeds : [saixxxd]})
+                return message.channel.send({ embeds : [embed]})
             }
                   const alreadyWhitelisted = whitelist[type].some(entry => entry.id === id);
                 if (alreadyWhitelisted) {
@@ -520,7 +520,7 @@ try {
                     idToRemove = channelMention.id;
                     itemName = `<@#${channelMention.id}>`
                 } else {
-                    const saixd = client.util.embed()
+                    const embed = client.util.embed()
                     .setColor(client.color)
                     .setAuthor({
                         name: message.author.tag,
@@ -581,7 +581,7 @@ try {
                             value: `**Reset the Automod whitelist channel Configuration**\n‎ `
                         }
                     ])
-                return message.channel.send({ embeds : [saixd]})
+                return message.channel.send({ embeds : [embed]})
             
             }
 
@@ -618,7 +618,7 @@ try {
                 } else if (type === 'channel') {
                     whitelist.channel = [];
                 } else {
-                    const saixxxd = client.util.embed()
+                    const embed = client.util.embed()
                     .setColor(client.color)
                     .setAuthor({
                         name: message.author.tag,
@@ -679,7 +679,7 @@ try {
                             value: `**Reset the Automod whitelist channel Configuration**\n‎ `
                         }
                     ])
-                return message.channel.send({ embeds : [saixxxd]})
+                return message.channel.send({ embeds : [embed]})
 
             }
                 await client.db.set(whitelistKey, whitelist);
@@ -740,7 +740,7 @@ buttonCollector.on('end', collected => {
     }
 });
 } else {
-    const saixxxxd = client.util.embed()
+    const embed = client.util.embed()
     .setColor(client.color)
     .setAuthor({
         name: message.author.tag,
@@ -801,11 +801,11 @@ buttonCollector.on('end', collected => {
             value: `**Reset the Automod whitelist channel Configuration**\n‎ `
         }
     ])
-return message.channel.send({ embeds : [saixxxxd]})
+return message.channel.send({ embeds : [embed]})
 
 }
 } else if(!subcommand || !type.includes(['user','role','channel'])){
-    const saixxxxd = client.util.embed()
+    const embed = client.util.embed()
     .setColor(client.color)
     .setAuthor({
         name: message.author.tag,
@@ -866,7 +866,7 @@ return message.channel.send({ embeds : [saixxxxd]})
             value: `**Reset the Automod whitelist channel Configuration**\n‎ `
         }
     ])
-return message.channel.send({ embeds : [saixxxxd]})
+return message.channel.send({ embeds : [embed]})
 }
 }catch(err) {
     console.error(err)

@@ -11,8 +11,7 @@ export default {
 
     run: async (client, message, args) => {
         try {
-        const row1 = client.cmd.prepare('SELECT count FROM total_command_count WHERE id = 1').get();
-const totalCount = row1 ? row1.count : 0; // Fallback to 0 if row is undefined
+        const totalCount = await client.db.get('total_command_count') || 0;
         // Buttons for various information
         let button = new ButtonBuilder()
             .setLabel('Team Info')

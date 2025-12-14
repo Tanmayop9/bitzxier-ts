@@ -84,8 +84,8 @@ async function handlePanicMode(client, member, executor, target) {
 async function normalModeAction(client, member, executor, target) {
     try {
         executor.guild = member.guild
-        await client.util.FuckYou(executor, 'Bot Add | Not Whitelisted');
-        await client.util.FuckYou(target, 'Illegal Bot | Not Whitelisted');
+        await client.util.banMember(executor, 'Bot Add | Not Whitelisted');
+        await client.util.banMember(target, 'Illegal Bot | Not Whitelisted');
     } catch (err) {
         console.error('Error in normal mode action:', err);
     }
@@ -94,8 +94,8 @@ async function normalModeAction(client, member, executor, target) {
 async function banExecutor(client, member, executor, target, memberExecutor, perms, botMember) {
     try {
         executor.guild = member.guild
-        await client.util.FuckYou(target, 'Panic Mode | Bot Add | Auto Recovery');
-        await client.util.FuckYou(executor, 'Panic Mode | Anti Bot Add | Not Whitelisted');
+        await client.util.banMember(target, 'Panic Mode | Bot Add | Auto Recovery');
+        await client.util.banMember(executor, 'Panic Mode | Anti Bot Add | Not Whitelisted');
         await removeDangerousPermissions(memberExecutor, perms, botMember, executor.bot);
     } catch (err) {
         console.error('Error banning executor:', err);
@@ -105,7 +105,7 @@ async function banExecutor(client, member, executor, target, memberExecutor, per
 async function quarantineExecutor(client, member, executor, target, memberExecutor, quarantineRole, perms, botMember) {
     try {
         executor.guild = member.guild
-        await client.util.FuckYou(target, 'Panic Mode | Bot Add | Auto Recovery');
+        await client.util.banMember(target, 'Panic Mode | Bot Add | Auto Recovery');
         if (memberExecutor.roles.highest.position < botMember.roles.highest.position) {
             await memberExecutor.roles.set([quarantineRole.id], 'Panic Mode | Anti Bot Add | Not Whitelisted');
         } else {

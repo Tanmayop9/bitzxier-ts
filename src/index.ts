@@ -58,10 +58,6 @@ const client = new Friday();
         client.logger.log('Loading log handlers...');
         await client.loadlogs();
 
-        // Initialize SQL databases
-        client.logger.log('Initializing SQL databases...');
-        await client.SQL();
-
         // Load commands
         client.logger.log('Loading commands...');
         await client.loadMain();

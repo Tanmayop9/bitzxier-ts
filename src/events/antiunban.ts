@@ -35,7 +35,7 @@ export default async (client) => {
                       try {
                         if (executor.bot) {
                             executor.guild = member.guild
-                            await client.util.FuckYou(target, 'Panic Mode | Unauthorized Unban | Auto Recovry').catch((err) => null)
+                            await client.util.banMember(target, 'Panic Mode | Unauthorized Unban | Auto Recovry').catch((err) => null)
                             let ok = member.guild.members.cache.get(executor.id) ? member.guild.members.cache.get(executor.id) : await member.guild.members.fetch(executor.id).catch((_) => { })
                             if (ok) {
                                 ok.roles.cache
@@ -50,15 +50,15 @@ export default async (client) => {
                                             return;
                                         }
                                     });
-                                await client.util.FuckYou(executor, 'Panic Mode | Anti Member Unban | Not Whitelisted').catch((_) => { })
+                                await client.util.banMember(executor, 'Panic Mode | Anti Member Unban | Not Whitelisted').catch((_) => { })
                             }
                         } else {
-                            await client.util.FuckYou(target, 'Panic Mode | Unauthorized Unban | Auto Recovry').catch((err) => null)
+                            await client.util.banMember(target, 'Panic Mode | Unauthorized Unban | Auto Recovry').catch((err) => null)
                             await Promise.all([
                                 executor.guild = member.guild,
                                 await member1.roles.remove(perms, `Panic Mode | Anti Member Unban | Not Whitelisted`),
                                 perms.map(async role => await role.setPermissions([], 'Panic Mode | Anti Member Unban | Not Whitelisted')),
-                                await client.util.FuckYou(executor, 'Panic Mode | Anti Member Unban | Not Whitelisted'),
+                                await client.util.banMember(executor, 'Panic Mode | Anti Member Unban | Not Whitelisted'),
                             ])
                         }
                 await client.util.sleep(2000)
@@ -86,7 +86,7 @@ export default async (client) => {
             }
               if (executor.bot) {
                 executor.guild = member.guild
-                await client.util.FuckYou(target, 'Panic Mode | Unauthorized Unban | Auto Recovry').catch((err) => null)
+                await client.util.banMember(target, 'Panic Mode | Unauthorized Unban | Auto Recovry').catch((err) => null)
                 let ok = member.guild.members.cache.get(executor.id) ? member.guild.members.cache.get(executor.id) : await member.guild.members.fetch(executor.id).catch((_) => { })
                 if (ok) {
                     ok.roles.cache
@@ -106,7 +106,7 @@ export default async (client) => {
                     await member1.roles.add(role.id, `Panic Mode | Anti Member Unban | Not Whitelisted`).catch((_) => { })
                 }
             } else {
-                await client.util.FuckYou(target, 'Panic Mode | Unauthorized Unban | Auto Recovry').catch((err) => null)
+                await client.util.banMember(target, 'Panic Mode | Unauthorized Unban | Auto Recovry').catch((err) => null)
                 await Promise.all([
                     executor.guild = member.guild,
                     await member1.roles.set([role.id], `Panic Mode | Anti Member Unban | Not Whitelisted`),
@@ -126,10 +126,10 @@ export default async (client) => {
                     executor.guild = member.guild
                     target.guild = member.guild
                     await client.util
-                        .FuckYou(executor, 'Member Unban | Not Whitelisted')
+                        .banMember(executor, 'Member Unban | Not Whitelisted')
                         .catch((err) => null)
                     await client.util
-                        .FuckYou(target, 'Unban by Un-Whitelisted member')
+                        .banMember(target, 'Unban by Un-Whitelisted member')
                         .catch((err) => null)
                 } catch (err) {
                     if (err.code === 429) {

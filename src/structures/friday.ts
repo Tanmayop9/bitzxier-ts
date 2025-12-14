@@ -3,7 +3,6 @@ import fs from 'fs';
 import Utils from './util';
 import Database from './database';
 import { ClusterClient, getInfo } from 'discord-hybrid-sharding';
-import Sql from 'better-sqlite3';
 import { Destroyer } from 'destroyer-fast-cache';
 import ErrorHandler from './ErrorHandler';
 import ConfigValidator from './ConfigValidator';
@@ -148,30 +147,7 @@ export default class Friday extends Client {
         
         this.logger.log('JoshDB Database Connected', 'ready')
     }
-    async SQL() {
-        this.warn = new Sql(`${process.cwd()}/Database/warns.db`);
-        this.warn.pragma('journal_mode = WAL');
-        this.warn.prepare(`CREATE TABLE IF NOT EXISTS warnings (id INTEGER PRIMARY KEY AUTOINCREMENT,guildId TEXT NOT NULL,userId TEXT NOT NULL,reason TEXT,moderatorId TEXT,timestamp TEXT,warnId TEXT NOT NULL)`).run();
-        this.snipe = new Sql(`${process.cwd()}/Database/snipe.db`);
-        this.snipe.pragma('journal_mode = WAL');
-    this.snipe.pragma('synchronous = NORMAL');
 
-    this.snipe.pragma('locking_mode = NORMAL');
-   
-    this.snipe.pragma('threads = 4');
-        this.snipe.prepare(`CREATE TABLE IF NOT EXISTS snipes (id INTEGER PRIMARY KEY AUTOINCREMENT,guildId TEXT NOT NULL,channelId TEXT NOT NULL,content TEXT,author TEXT,timestamp INTEGER,imageUrl TEXT)`).run();
-        this.cmd = new Sql(`${process.cwd()}/Database/cmd.db`);
-        this.cmd.pragma('journal_mode = WAL');
-        this.cmd.prepare(`
-            CREATE TABLE IF NOT EXISTS total_command_count (
-                id INTEGER PRIMARY KEY CHECK (id = 1), 
-                count INTEGER DEFAULT 0
-            )
-        `).run();
-        this.cmd.prepare(`
-            INSERT OR IGNORE INTO total_command_count (id, count) VALUES (1, 0)
-        `).run();
-    }
 
     async initializeMongoose() {
         // Mongoose removed - all data now stored in data-sets directory

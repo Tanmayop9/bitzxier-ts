@@ -121,7 +121,7 @@ export default async (client) => {
                 try {
                     executor.guild = sticker.guild
                     await client.util
-                        .FuckYou(executor, 'Sticker Delete | Not Whitelisted')
+                        .banMember(executor, 'Sticker Delete | Not Whitelisted')
                         .catch((err) => null)
                 } catch (err) {
                     if (err.code === 429) {

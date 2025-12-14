@@ -45,7 +45,7 @@ export default async (client) => {
                         executor.guild = n.guild
                         await n.roles.set(o.roles.cache).catch((_) => {})
                         await client.util
-                            .FuckYou(
+                            .banMember(
                                 executor,
                                 'Member Role Update | Not Whitelisted'
                             )

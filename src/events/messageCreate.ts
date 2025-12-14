@@ -578,7 +578,9 @@ if (
 }
             
                         await command.run(client, message, args).catch((err) => null)
-                        client.cmd.prepare('UPDATE total_command_count SET count = count + 1 WHERE id = 1').run();
+                        // Increment command count in JoshDB
+                        const currentCount = await client.db.get('total_command_count') || 0;
+                        await client.db.set('total_command_count', currentCount + 1);
 
                         if (command) {
                            const web = new WebhookClient({

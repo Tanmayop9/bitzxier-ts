@@ -18,26 +18,9 @@ export default {
             });
         }
 
-        // Listen for deleted messages
-        client.on('messageDelete', async (deletedMessage) => {
-            if (deletedMessage?.author?.bot) return;
-
-            const snipeData = {
-                content: deletedMessage.content || 'No content available',
-                author: deletedMessage.author.tag || 'Unknown Author',
-                timestamp: deletedMessage.createdTimestamp,
-                imageUrl: deletedMessage.attachments.size > 0
-                    ? deletedMessage.attachments.first().url
-                    : null
-            };
-            // Insert snipe data into the database
-            const insertSnipe = client.snipe.prepare('INSERT INTO snipes (guildId, channelId, content, author, timestamp, imageUrl) VALUES (?, ?, ?, ?, ?, ?)');
-            insertSnipe.run(deletedMessage.guild.id, deletedMessage.channel.id, snipeData.content, snipeData.author, snipeData.timestamp, snipeData.imageUrl);
-        });
-
         // Retrieve the last snipe data
-        const getLastSnipe = client.snipe.prepare('SELECT * FROM snipes WHERE guildId = ? AND channelId = ? ORDER BY timestamp DESC LIMIT 1');
-        const snipe = getLastSnipe.get(message.guild.id, message.channel.id);
+        const snipeKey = `snipe_${message.guild.id}_${message.channel.id}`;
+        const snipe = await client.db.get(snipeKey);
 
         // Check if there's no snipe data
         if (!snipe) {

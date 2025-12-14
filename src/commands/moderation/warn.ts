@@ -42,8 +42,8 @@ export default {
                 const warnId = Math.floor(Math.random() * 1000000).toString(); // Generate a random ID for the warning
 
                 // Check the current warnings count
-                const selectWarnings = client.warn.prepare('SELECT * FROM warnings WHERE guildId = ? AND userId = ?');
-                const warnings = selectWarnings.all(message.guild.id, member.id);
+                const warningsKey = `warnings_${message.guild.id}_${member.id}`;
+                const warnings = await client.db.get(warningsKey) || [];
 
                 if (warnings.length >= 5) {
                     return message.channel.send({
@@ -55,8 +55,16 @@ export default {
                     });
                 }
 
-                const insertWarn = client.warn.prepare('INSERT INTO warnings (guildId, userId, reason, moderatorId, timestamp, warnId) VALUES (?, ?, ?, ?, ?, ?)');
-                insertWarn.run(message.guild.id, member.id, reason, message.member.id, timestamp, warnId);
+                // Add new warning
+                warnings.push({
+                    guildId: message.guild.id,
+                    userId: member.id,
+                    reason: reason,
+                    moderatorId: message.member.id,
+                    timestamp: timestamp,
+                    warnId: warnId
+                });
+                await client.db.set(warningsKey, warnings);
 
                 let notify;
                 try {
@@ -96,9 +104,10 @@ export default {
                     });
                 }
 
-                const deleteWarnings = client.warn.prepare('DELETE FROM warnings WHERE guildId = ? AND userId = ?');
-                const info = deleteWarnings.run(message.guild.id, memberToReset.id);
-                if (info.changes > 0) {
+                const warningsKey = `warnings_${message.guild.id}_${memberToReset.id}`;
+                const warnings = await client.db.get(warningsKey) || [];
+                if (warnings.length > 0) {
+                    await client.db.delete(warningsKey);
                     return message.channel.send({
                         embeds: [
                             client.util.embed()
@@ -127,8 +136,8 @@ export default {
                     });
                 }
 
-                const selectWarnings = client.warn.prepare('SELECT * FROM warnings WHERE guildId = ? AND userId = ?');
-                const warnings = selectWarnings.all(message.guild.id, memberToList.id);
+                const warningsKey = `warnings_${message.guild.id}_${memberToList.id}`;
+                const warnings = await client.db.get(warningsKey) || [];
 
                 if (warnings.length === 0) {
                     return message.channel.send({
@@ -165,10 +174,16 @@ export default {
                     });
                 }
 
-                const deleteWarning = client.warn.prepare('DELETE FROM warnings WHERE guildId = ? AND userId = ? AND warnId = ?');
-                const info = deleteWarning.run(message.guild.id, memberToRemove.id, warnId);
+                const warningsKey = `warnings_${message.guild.id}_${memberToRemove.id}`;
+                const warnings = await client.db.get(warningsKey) || [];
+                const filteredWarnings = warnings.filter(w => w.warnId !== warnId);
 
-                if (info.changes > 0) {
+                if (filteredWarnings.length < warnings.length) {
+                    if (filteredWarnings.length === 0) {
+                        await client.db.delete(warningsKey);
+                    } else {
+                        await client.db.set(warningsKey, filteredWarnings);
+                    }
                     return message.channel.send({
                         embeds: [
                             client.util.embed()

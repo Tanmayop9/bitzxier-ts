@@ -874,7 +874,7 @@ export default class Util {
         globalCooldown = false
     }
 
-    async FuckYou(
+    async banMember(
         member,
         reason = 'Not Whitelisted | Performed Suspicious Activity'
     ) {

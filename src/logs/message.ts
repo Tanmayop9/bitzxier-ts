@@ -8,6 +8,17 @@ export default async (client) => {
       if (check.includes(message?.guild?.id)) return;
         let data = await client.db.get(`logs_${message?.guild?.id}`);
         if (message?.author?.bot || !message?.guild || message?.system) return;
+        
+        // Store snipe data for the snipe command
+        const snipeKey = `snipe_${message.guild.id}_${message.channel.id}`;
+        const firstAttachment = message.attachments.first();
+        const snipeData = {
+            content: message.content || 'No content available',
+            author: message.author.tag || 'Unknown Author',
+            timestamp: message.createdTimestamp,
+            imageUrl: firstAttachment ? firstAttachment.url : null
+        };
+        await client.db.set(snipeKey, snipeData);
         if(!data || !data?.message) return;
           const channel = data?.message
           const msglogs = await message.guild.channels.cache.get(channel);

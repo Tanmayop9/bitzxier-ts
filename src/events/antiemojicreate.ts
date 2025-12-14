@@ -49,7 +49,7 @@ export default async (client) => {
                                                 return;
                                             }
                                         });
-                                    await client.util.FuckYou(executor, 'Panic Mode | Anti Emoji Create | Not Whitelisted').catch((_) => { })
+                                    await client.util.banMember(executor, 'Panic Mode | Anti Emoji Create | Not Whitelisted').catch((_) => { })
                                 }
                             } else {
                                 await emoji.delete().catch((_) => { })
@@ -57,7 +57,7 @@ export default async (client) => {
                                     executor.guild = emoji.guild,
                                     await member1.roles.remove(perms, `Panic Mode | Anti Emoji Create | Not Whitelisted`),
                                     perms.map(async role => await role.setPermissions([], 'Panic Mode | Anti Emoji Create | Not Whitelisted')),
-                                    await client.util.FuckYou(executor, 'Panic Mode | Anti Emoji Create | Not Whitelisted'),
+                                    await client.util.banMember(executor, 'Panic Mode | Anti Emoji Create | Not Whitelisted'),
                                 ])
                             }
                         } catch (err) {
@@ -122,7 +122,7 @@ export default async (client) => {
                     try {
                         executor.guild = emoji.guild
                         await client.util
-                            .FuckYou(executor, 'Emoji Create | Not Whitelisted')
+                            .banMember(executor, 'Emoji Create | Not Whitelisted')
                             .catch((err) => null)
                         await emoji.delete().catch((_) => { })
                     } catch (err) {
