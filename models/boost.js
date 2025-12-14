@@ -32,9 +32,12 @@ class BoostModel {
 let _db = null;
 const setDb = (db) => { _db = db; };
 
-export default (db) => {
+const boostModel = (db) => {
     if (db) return new BoostModel(db);
     if (_db) return new BoostModel(_db);
     throw new Error('Boost Model: Database not initialized');
 };
-export const setDb = setDb;
+
+boostModel.setDb = setDb;
+
+export default boostModel;

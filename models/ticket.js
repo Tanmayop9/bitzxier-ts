@@ -72,9 +72,12 @@ class TicketModel {
 let _db = null;
 const setDb = (db) => { _db = db; };
 
-export default (db) => {
+const ticketModel = (db) => {
     if (db) return new TicketModel(db);
     if (_db) return new TicketModel(_db);
     throw new Error('Ticket Model: Database not initialized');
 };
-export const setDb = setDb;
+
+ticketModel.setDb = setDb;
+
+export default ticketModel;

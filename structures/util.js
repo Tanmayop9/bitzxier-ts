@@ -767,7 +767,8 @@ export default class Util {
         return totalCount;
     };
      async manageAfk(message, client) {
-        import db from '../models/afk.js';
+        const { default: afkModule } = await import('../models/afk.js');
+        const db = afkModule(client.db);
         let data = await db.findOne({
             Member: message.author.id,
             $or: [
@@ -894,7 +895,7 @@ export default class Util {
 	}
 
    async pagination(membersList, title, client, message) {
-    import lodash from 'lodash';
+    const { default: lodash } = await import('lodash');
     
     // Split members list into chunks of 10 items per page
     const pages = lodash.chunk(membersList, 10);
@@ -1114,7 +1115,7 @@ export default class Util {
     }
 
     async pagination(message, description, desc = '') {
-        import lodash from 'lodash';
+        const { default: lodash } = await import('lodash');
         let previousbut = new ButtonBuilder()
             .setCustomId('queueprev')
             .setEmoji('<:ARROW1:1182736084766036059>')
@@ -1201,7 +1202,7 @@ export default class Util {
         return [...new Set(arr)]
     }
  async generateLatencyChart(ws_latency, database) {
-        import QuickChart from 'quickchart-js'; 
+        const { default: QuickChart } = await import('quickchart-js'); 
 
         let data = await this.client.util._generateLatencyData(ws_latency, database);
         // Create and configure the chart
@@ -1218,7 +1219,7 @@ export default class Util {
     
     // Private method for generating latency data
     async _generateLatencyData(ws_latency, database) {
-        import QuickChart from 'quickchart-js';
+        const { default: QuickChart } = await import('quickchart-js');
 
         // Data generation logic (like in the previous example)
         let data = [];
@@ -1230,8 +1231,8 @@ export default class Util {
     }
     
     // Private method to generate a single data point
-    _generateLatency(wsl, msg) {
-        import QuickChart from 'quickchart-js';
+    async _generateLatency(wsl, msg) {
+        const { default: QuickChart } = await import('quickchart-js');
 
         let rnd = Math.random();
         wsl = parseInt(wsl + Math.floor(rnd * (-wsl * 0.05 - wsl * 0.05)) + wsl * 0.05);
@@ -1240,8 +1241,8 @@ export default class Util {
     }
     
     // Private method for generating chart configuration
-    _generateChartConfig(ws_latency, database, data) {
-        import QuickChart from 'quickchart-js';
+    async _generateChartConfig(ws_latency, database, data) {
+        const { default: QuickChart } = await import('quickchart-js');
 
         return {
             type: "line",

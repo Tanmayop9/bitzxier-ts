@@ -130,7 +130,7 @@ class ModernEmbedBuilder {
         if (command.examples && command.examples.length > 0) {
             embed.addFields({
                 name: 'Examples',
-                value: command.examples.map(e => `\`${prefix}${e}\`).join('\n'),
+                value: command.examples.map(e => `\`${prefix}${e}\``).join('\n'),
                 inline: false
             });
         }
@@ -139,4 +139,4 @@ class ModernEmbedBuilder {
     }
 }
 
-module.exports = ModernEmbedBuilder;
+export default ModernEmbedBuilder;

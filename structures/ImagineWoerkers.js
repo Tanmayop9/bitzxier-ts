@@ -1,7 +1,7 @@
 import { parentPort, workerData } from 'worker_threads';
 import rexzimagine from 'image-genv3';
 import path from 'path';
-import fs from 'fs';.promises;
+import fs from 'fs/promises';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 

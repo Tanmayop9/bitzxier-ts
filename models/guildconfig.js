@@ -56,9 +56,12 @@ class GuildConfigModel {
 let _db = null;
 const setDb = (db) => { _db = db; };
 
-export default (db) => {
+const guildConfigModel = (db) => {
     if (db) return new GuildConfigModel(db);
     if (_db) return new GuildConfigModel(_db);
     throw new Error('GuildConfig Model: Database not initialized');
 };
-export const setDb = setDb;
+
+guildConfigModel.setDb = setDb;
+
+export default guildConfigModel;
