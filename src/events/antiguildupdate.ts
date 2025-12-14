@@ -1,5 +1,5 @@
 import phin from 'phin';
-import { AuditLogEvent } from 'discord';
+import { AuditLogEvent } from 'discord.js';
 
 export default async (client) => {
     client.on('guildUpdate', async (o, n) => {

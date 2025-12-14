@@ -1,4 +1,4 @@
-import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle ,StringSelectMenuBuilder } from 'discord';
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle ,StringSelectMenuBuilder } from 'discord.js';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 

@@ -1,4 +1,4 @@
-import { MessageEmbed, ButtonBuilder, ActionRowBuilder, ButtonStyle } from 'discord';
+import { MessageEmbed, ButtonBuilder, ActionRowBuilder, ButtonStyle } from 'discord.js';
 import moment from 'moment';
 import os from 'os';
 

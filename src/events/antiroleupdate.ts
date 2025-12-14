@@ -1,5 +1,5 @@
 import { getSettings } from '../models/mainrole';
-import { AuditLogEvent , PermissionsBitField } from 'discord';
+import { AuditLogEvent , PermissionsBitField } from 'discord.js';
 export default async (client) => {
     /* Anti Role Update */
     client.on('roleUpdate', async (o, n) => {

@@ -1,7 +1,7 @@
 import { Message,
     Client,
     EmbedBuilder,
-    PermissionsBitField } from 'discord';
+    PermissionsBitField } from 'discord.js';
 
 export default {
     name: 'lock',

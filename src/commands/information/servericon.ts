@@ -2,7 +2,7 @@ import { Message,
     Client,
     EmbedBuilder,
     ButtonBuilder,
-    ActionRowBuilder } from 'discord';
+    ActionRowBuilder } from 'discord.js';
 
 export default {
     name: 'servericon',

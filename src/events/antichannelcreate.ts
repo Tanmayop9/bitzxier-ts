@@ -1,4 +1,4 @@
-import { AuditLogEvent } from 'discord';
+import { AuditLogEvent } from 'discord.js';
 const guildChannelMap = new Map();
 const deletionQueue = new Map();
 

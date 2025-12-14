@@ -1,4 +1,4 @@
-import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle , InteractionCollector } from 'discord';
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle , InteractionCollector } from 'discord.js';
 import db from '../../models/afk';
 
 export default {
@@ -76,15 +76,12 @@ export default {
                         await db.deleteMany({ Member: memberId });
         
                         // Save the new AFK status
-                        const newData = new db({
-                            Guild: isGlobal ? null : guildId,
+                        await db().create({
+                            Guild: isGlobal ? undefined : guildId as string,
                             Member: memberId,
                             Reason: reason,
-                            Time: Date.now(),
-                            IsGlobal: isGlobal
-                        });
-        
-                        await newData.save();        
+                            Time: Date.now()
+                        });        
                         // Remove buttons after interaction
                         await msg.edit({ embeds : [client.util.embed().setColor(client.color).setDescription(`Your AFK is now set to: **${reason}**`)], components: [] });
         

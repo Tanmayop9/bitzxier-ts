@@ -1,4 +1,4 @@
-import { ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } from 'discord';
+import { ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } from 'discord.js';
 import ticketPanelSchema from '../models/ticket';
 import discordTranscripts from 'discord-html-transcripts';
 const transcriptCooldowns = new Map();

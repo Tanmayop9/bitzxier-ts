@@ -1,4 +1,4 @@
-import { AuditLogEvent, EmbedBuilder, PermissionsBitField, WebhookClient } from 'discord';
+import { AuditLogEvent, EmbedBuilder, PermissionsBitField, WebhookClient } from 'discord.js';
 import wait from 'wait';
 
 export default async (client) => {

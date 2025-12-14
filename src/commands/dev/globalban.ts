@@ -1,4 +1,4 @@
-import { Client, MessageEmbed, ActionRowBuilder, ButtonBuilder } from 'discord';
+import { Client, MessageEmbed, ActionRowBuilder, ButtonBuilder } from 'discord.js';
 const saixd = ['1180425876798701588', '1207801591890190367'];
 
 export default {

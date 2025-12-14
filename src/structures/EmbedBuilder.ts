@@ -5,7 +5,7 @@
  * @description Modern embed builder with standardized design
  */
 
-import { EmbedBuilder } from 'discord';
+import { EmbedBuilder } from 'discord.js';
 
 class ModernEmbedBuilder {
     constructor(client) {

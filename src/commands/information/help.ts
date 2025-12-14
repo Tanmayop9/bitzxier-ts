@@ -5,7 +5,7 @@
  * @description Modern help command with improved UI
  */
 
-import { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder } from 'discord';
+import { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder } from 'discord.js';
 
 export default {
     name: 'help',

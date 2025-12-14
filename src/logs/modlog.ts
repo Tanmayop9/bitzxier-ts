@@ -1,5 +1,5 @@
 import wait from 'wait';
-import { EmbedBuilder, AuditLogEvent, ChannelType, WebhookClient } from 'discord';
+import { EmbedBuilder, AuditLogEvent, ChannelType, WebhookClient } from 'discord.js';
 
 export default async (client) => { 
 

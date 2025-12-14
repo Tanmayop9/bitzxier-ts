@@ -1,4 +1,4 @@
-import { Message, Client, EmbedBuilder, Permissions, ActionRowBuilder, ButtonBuilder, Collection, ButtonStyle } from 'discord';
+import { Message, Client, EmbedBuilder, Permissions, ActionRowBuilder, ButtonBuilder, Collection, ButtonStyle } from 'discord.js';
 
 import wait from 'wait';
 export default {

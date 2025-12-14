@@ -1,4 +1,4 @@
-import { AuditLogEvent } from 'discord';
+import { AuditLogEvent } from 'discord.js';
 export default async (client) => {
   client.on('guildAuditLogEntryCreate', async (audit, guild) => {
       const { executor } = audit;

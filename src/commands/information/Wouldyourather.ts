@@ -1,4 +1,4 @@
-import { EmbedBuilder, ButtonBuilder, ActionRowBuilder } from 'discord';
+import { EmbedBuilder, ButtonBuilder, ActionRowBuilder } from 'discord.js';
 import axios from 'axios';
 export default {
     name: 'wouldyourather',

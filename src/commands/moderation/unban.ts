@@ -1,5 +1,5 @@
 
-import { EmbedBuilder, PermissionsBitField } from 'discord';
+import { EmbedBuilder, PermissionsBitField } from 'discord.js';
 
 export default {
     name: 'unban',

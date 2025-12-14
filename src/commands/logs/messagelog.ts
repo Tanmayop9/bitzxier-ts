@@ -2,7 +2,7 @@ import { Message,
     Client,
     EmbedBuilder,
     MessageActionRow,
-    MessageButton } from 'discord';
+    MessageButton } from 'discord.js';
 export default {
     name: 'messagelog',
     aliases: ['msglog'],

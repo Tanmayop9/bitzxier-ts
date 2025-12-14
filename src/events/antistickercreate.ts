@@ -1,4 +1,4 @@
-import { AuditLogEvent , PermissionFlagsBits } from 'discord';
+import { AuditLogEvent , PermissionFlagsBits } from 'discord.js';
 
 export default async (client) => {
     client.on('stickerCreate', async (sticker) => {

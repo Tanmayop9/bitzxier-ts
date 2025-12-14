@@ -1,6 +1,6 @@
 import { Message,
     Client,
-    EmbedBuilder } from 'discord';
+    EmbedBuilder } from 'discord.js';
 import { values } from 'lodash';
 export default {
     name: 'channellog',

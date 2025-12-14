@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord';
+import { MessageEmbed } from 'discord.js';
 
 export default {
     name: 'vcundeafenall',

@@ -1,6 +1,6 @@
 import { Message,
     Client,
-EmbedBuilder } from 'discord';
+EmbedBuilder } from 'discord.js';
 export default {
     name: 'logall',
     aliases: [],

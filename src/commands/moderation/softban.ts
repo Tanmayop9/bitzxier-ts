@@ -1,4 +1,4 @@
-import { Message, Client, MessageEmbed } from 'discord';
+import { Message, Client, MessageEmbed } from 'discord.js';
 const saixd = ['1143155471159664710']
 export default {
     name: 'softban',

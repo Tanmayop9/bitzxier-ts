@@ -1,4 +1,4 @@
-import { Message, Client, EmbedBuilder } from 'discord';
+import { Message, Client, EmbedBuilder } from 'discord.js';
 export default {
     name: 'kick',
     aliases: [],

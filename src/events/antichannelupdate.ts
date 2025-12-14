@@ -1,4 +1,4 @@
-import { AuditLogEvent, ChannelType } from 'discord';
+import { AuditLogEvent, ChannelType } from 'discord.js';
 
 export default async (client) => {
     client.on('channelUpdate', async (o, n) => {

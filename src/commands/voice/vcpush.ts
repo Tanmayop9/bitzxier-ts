@@ -1,4 +1,4 @@
-import { ChannelType, PermissionsBitField } from 'discord';
+import { ChannelType, PermissionsBitField } from 'discord.js';
 
 export default {
     name: 'vcpush',

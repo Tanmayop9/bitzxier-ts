@@ -5,7 +5,7 @@
  * @description Ready event handler - Called when bot is ready
  */
 
-import { ActivityType } from 'discord';
+import { ActivityType } from 'discord.js';
 
 export default async (client) => {
     client.on('ready', async () => {

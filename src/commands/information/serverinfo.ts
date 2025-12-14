@@ -1,4 +1,4 @@
-import { EmbedBuilder, ChannelType } from 'discord';
+import { EmbedBuilder, ChannelType } from 'discord.js';
 import moment from 'moment';
 
 const verificationLevels = {

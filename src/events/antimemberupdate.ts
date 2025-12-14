@@ -1,4 +1,4 @@
-import { AuditLogEvent } from 'discord';
+import { AuditLogEvent } from 'discord.js';
 export default async (client) => {
     client.on('guildMemberUpdate', async (o, n) => {
         let role = n.guild.roles.premiumSubscriberRole

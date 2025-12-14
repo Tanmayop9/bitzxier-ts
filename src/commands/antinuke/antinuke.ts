@@ -1,4 +1,4 @@
-import { EmbedBuilder, PermissionFlagsBits } from 'discord';
+import { EmbedBuilder, PermissionFlagsBits } from 'discord.js';
 import wait from 'wait';
 
 export default {

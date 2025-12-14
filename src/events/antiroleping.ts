@@ -1,5 +1,5 @@
 import { getSettings } from '../models/mainrole';
-import { Guild, PermissionsBitField } from 'discord';
+import { Guild, PermissionsBitField } from 'discord.js';
 export default async (client) => {
     /*
      * @param {Message} message

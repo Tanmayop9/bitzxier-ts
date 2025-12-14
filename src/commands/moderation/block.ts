@@ -1,7 +1,7 @@
 import { Message,
     Client,
     EmbedBuilder,
-    PermissionFlagsBits } from 'discord';
+    PermissionFlagsBits } from 'discord.js';
 
 export default {
     name: 'block',

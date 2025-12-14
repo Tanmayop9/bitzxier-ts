@@ -1,4 +1,4 @@
-import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, PermissionsBitField, Collection, WebhookClient, ButtonStyle } from 'discord';
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, PermissionsBitField, Collection, WebhookClient, ButtonStyle } from 'discord.js';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 // Config loaded from client.config

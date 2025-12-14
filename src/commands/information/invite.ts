@@ -1,4 +1,4 @@
-import { EmbedBuilder ,ActionRowBuilder , ButtonBuilder , ButtonStyle } from 'discord';
+import { EmbedBuilder ,ActionRowBuilder , ButtonBuilder , ButtonStyle } from 'discord.js';
 
 // Command
 export default {

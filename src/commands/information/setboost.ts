@@ -1,4 +1,4 @@
-import { EmbedBuilder } from 'discord';
+import { EmbedBuilder } from 'discord.js';
 import db from '../../models/boost';
 
 export default {

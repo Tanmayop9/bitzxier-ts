@@ -1,4 +1,4 @@
-import { ActionRowBuilder, ButtonBuilder } from 'discord';
+import { ActionRowBuilder, ButtonBuilder } from 'discord.js';
 
 export default {
     name: 'whitelistreset',

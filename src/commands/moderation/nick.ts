@@ -1,4 +1,4 @@
-import { EmbedBuilder, } from 'discord';
+import { EmbedBuilder, } from 'discord.js';
 
 export default {
     name: 'nick',

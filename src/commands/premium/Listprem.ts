@@ -5,7 +5,7 @@
  * @description List all premium users
  */
 
-import { EmbedBuilder } from 'discord';
+import { EmbedBuilder } from 'discord.js';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
@@ -16,8 +16,8 @@ export default {
     aliases: ['listprem', 'premusers', 'premlist'],
     category: 'Owner',
     description: 'View all users with premium access',
-    run: async (client, message, args) => {
-        if (!config.premium.includes(message.author.id)) return;
+    run: async (client: any, message: any, args: string[]) => {
+        if (!client.config.premium?.includes(message.author.id)) return;
 
         const embed = client.util.embed()
             .setColor(client.color)

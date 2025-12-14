@@ -6,7 +6,7 @@
  */
 
 import BaseCommand from '../../structures/BaseCommand';
-import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, version as djsVersion } from 'discord';
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, version as djsVersion } from 'discord.js';
 import os from 'os';
 
 class StatsCommand extends BaseCommand {

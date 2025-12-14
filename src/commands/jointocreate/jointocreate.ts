@@ -1,4 +1,4 @@
-import { Client, Intents, ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, ChannelType } from 'discord';
+import { Client, Intents, ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, ChannelType } from 'discord.js';
 import mongoose from 'mongoose';
 import GuildConfig from '../../models/guildconfig'; // Adjust the path according to your project structure
 

@@ -1,4 +1,4 @@
-import { AuditLogEvent } from 'discord';
+import { AuditLogEvent } from 'discord.js';
 export default async (client) => {
     client.on('guildMemberRemove', async (member) => {
         let check =  await client.util.BlacklistCheck(member.guild)

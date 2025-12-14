@@ -3,7 +3,7 @@ import { Message,
     EmbedBuilder,
     ActionRowBuilder,
     ButtonBuilder,
-    ButtonStyle } from 'discord';
+    ButtonStyle } from 'discord.js';
 
 export default {
     name: 'logreset',

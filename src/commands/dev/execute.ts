@@ -2,7 +2,7 @@ import { Message,
     Client,
     MessageEmbed,
     ActionRowBuilder,
-    ButtonBuilder } from 'discord';
+    ButtonBuilder } from 'discord.js';
 import { exec } from 'child_process';
 const choice = ['🚫']
 const saixd = ['']

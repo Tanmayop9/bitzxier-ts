@@ -1,4 +1,4 @@
-import { EmbedBuilder, AuditLogEvent, ChannelType, WebhookClient } from 'discord';
+import { EmbedBuilder, AuditLogEvent, ChannelType, WebhookClient } from 'discord.js';
 import discordTranscripts from 'discord-html-transcripts';
 import wait from 'wait';
 

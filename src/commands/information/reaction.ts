@@ -1,4 +1,4 @@
-import { EmbedBuilder } from 'discord';
+import { EmbedBuilder } from 'discord.js';
 
 // Store user IDs who are currently executing the command
 const cooldown = new Set();

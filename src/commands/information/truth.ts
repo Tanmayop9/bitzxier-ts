@@ -1,4 +1,4 @@
-import { MessageEmbed, ButtonBuilder, ActionRowBuilder } from 'discord';
+import { MessageEmbed, ButtonBuilder, ActionRowBuilder } from 'discord.js';
 import axios from 'axios';
 export default {
     name: 'truth',

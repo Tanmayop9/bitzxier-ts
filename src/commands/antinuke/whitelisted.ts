@@ -1,4 +1,4 @@
-import { MessageEmbed, ActionRowBuilder, ButtonBuilder } from 'discord';
+import { MessageEmbed, ActionRowBuilder, ButtonBuilder } from 'discord.js';
 
 export default {
     name: 'wlisted',

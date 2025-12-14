@@ -5,7 +5,7 @@
  * @description Add premium access to a user
  */
 
-import { EmbedBuilder } from 'discord';
+import { EmbedBuilder } from 'discord.js';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
@@ -18,7 +18,7 @@ export default {
     description: 'Grant premium access to a user',
     usage: '<user_id> [days] [server_count]',
     run: async (client, message, args) => {
-        if (!config.premium.includes(message.author.id)) return
+        if (!client.config.premium.includes(message.author.id)) return
         
         const embed = client.util.embed()
             .setColor(client.color)

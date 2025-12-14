@@ -1,5 +1,5 @@
 import wait from 'wait';
-import { AuditLogEvent , PermissionFlagsBits } from 'discord';
+import { AuditLogEvent , PermissionFlagsBits } from 'discord.js';
 
 export default async (client) => {
     client.on('webhooksUpdate', async (webhook) => {

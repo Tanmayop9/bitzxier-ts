@@ -1,5 +1,5 @@
-import Discord from 'discord';
-import { PermissionsBitField } from 'discord';
+import Discord from 'discord.js';
+import { PermissionsBitField } from 'discord.js';
 import mongoose from 'mongoose';
 import wait from 'wait';
 import { createRequire } from 'module';

@@ -8,7 +8,7 @@ import { EmbedBuilder,
     AttachmentBuilder,
     PermissionsBitField,
     ChannelType,
-    Partials } from 'discord';
+    Partials } from 'discord.js';
 import { getSettingsar } from '../models/autorole';
 
 // Config is loaded asynchronously from client.config

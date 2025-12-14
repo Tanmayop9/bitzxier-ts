@@ -1,5 +1,5 @@
-import { EmbedBuilder, ButtonBuilder, ActionRowBuilder,ButtonStyle } from 'discord';
-import Discord from 'discord';
+import { EmbedBuilder, ButtonBuilder, ActionRowBuilder,ButtonStyle } from 'discord.js';
+import Discord from 'discord.js';
 const cooldown = new Set();
 
 export default {

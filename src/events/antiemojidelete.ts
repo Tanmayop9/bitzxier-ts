@@ -1,4 +1,4 @@
-import { AuditLogEvent } from 'discord';
+import { AuditLogEvent } from 'discord.js';
 export default async (client) => {
     client.on('emojiDelete', async (emoji) => {
         let check = await client.util.BlacklistCheck(emoji.guild)

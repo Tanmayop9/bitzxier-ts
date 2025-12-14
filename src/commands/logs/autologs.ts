@@ -2,7 +2,7 @@ import { Message,
     Client,
     ChannelType,
     PermissionsBitField,
-    EmbedBuilder } from 'discord';
+    EmbedBuilder } from 'discord.js';
 export default {
     name: 'autologs',
     aliases: ['autolog'],

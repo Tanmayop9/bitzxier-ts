@@ -3,7 +3,7 @@ import { Message,
     EmbedBuilder,
     ActionRowBuilder,
     ButtonBuilder,
-    StringSelectMenuBuilder } from 'discord';
+    StringSelectMenuBuilder } from 'discord.js';
 
 export default {
     name: 'unblock',

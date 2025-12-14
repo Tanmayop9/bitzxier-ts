@@ -1,7 +1,7 @@
 import { PermissionsBitField,
     ButtonBuilder,
     ActionRowBuilder,
-    inlineCode } from 'discord';
+    inlineCode } from 'discord.js';
 export default {
     name: 'setup',
     aliases: ['customrole'],

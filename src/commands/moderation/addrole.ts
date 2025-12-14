@@ -1,4 +1,4 @@
-import { Message, Client, EmbedBuilder, PermissionsBitField, ActionRowBuilder, ButtonBuilder, ButtonStyle, Collection,PermissionFlagsBits } from 'discord';
+import { Message, Client, EmbedBuilder, PermissionsBitField, ActionRowBuilder, ButtonBuilder, ButtonStyle, Collection,PermissionFlagsBits } from 'discord.js';
 import moment from 'moment';
 import('moment-duration-format');
 

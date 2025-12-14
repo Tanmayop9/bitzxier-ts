@@ -1,4 +1,4 @@
-import { Message, Client, MessageEmbed } from 'discord';
+import { Message, Client, MessageEmbed } from 'discord.js';
 
 const compliments = {
     genius: [

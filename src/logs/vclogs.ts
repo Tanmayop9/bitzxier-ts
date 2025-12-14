@@ -1,4 +1,4 @@
-import { WebhookClient, Permissions } from 'discord';
+import { WebhookClient, Permissions } from 'discord.js';
 import wait from 'wait';
 
 export default async (client) => {

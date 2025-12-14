@@ -3,7 +3,7 @@ import { MessageEmbed,
     ActionRowBuilder,
     ButtonBuilder,
     StringSelectMenuBuilder,
-    Client } from 'discord';
+    Client } from 'discord.js';
 
 export default {
     name: 'ignore',

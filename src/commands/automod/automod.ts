@@ -1,4 +1,4 @@
-import { StringSelectMenuBuilder, ComponentType, ActionRowBuilder,ButtonBuilder,ButtonStyle } from 'discord';
+import { StringSelectMenuBuilder, ComponentType, ActionRowBuilder,ButtonBuilder,ButtonStyle } from 'discord.js';
 
 export default {
     name: 'automod',

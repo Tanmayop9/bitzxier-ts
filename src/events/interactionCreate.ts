@@ -1,4 +1,4 @@
-import { Events } from 'discord';
+import { Events } from 'discord.js';
 
 export default async (client) => {
     client.on(Events.InteractionCreate, async (interaction) => {

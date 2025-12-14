@@ -1,4 +1,4 @@
-import { EmbedBuilder } from 'discord';
+import { EmbedBuilder } from 'discord.js';
 import { getSettingsar } from '../../models/autorole';
 
 export default {

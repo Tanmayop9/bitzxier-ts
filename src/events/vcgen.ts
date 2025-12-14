@@ -8,7 +8,7 @@ import { ActionRowBuilder,
   UserSelectMenuBuilder,
   ComponentType, 
   ButtonStyle,
-  ButtonBuilder } from 'discord';
+  ButtonBuilder } from 'discord.js';
 import GuildConfig from '../models/guildconfig';
 
 export default async (client) => {

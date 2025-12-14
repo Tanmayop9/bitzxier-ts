@@ -1,4 +1,4 @@
-import { EmbedBuilder, PermissionsBitField } from 'discord';
+import { EmbedBuilder, PermissionsBitField } from 'discord.js';
 import ms from 'ms';
 
 export default {

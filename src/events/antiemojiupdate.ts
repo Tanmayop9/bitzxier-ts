@@ -1,4 +1,4 @@
-import { AuditLogEvent } from 'discord';
+import { AuditLogEvent } from 'discord.js';
 
 export default async (client) => {
     client.on('emojiUpdate', async (o, n) => {

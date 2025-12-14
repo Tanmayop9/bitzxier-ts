@@ -1,4 +1,4 @@
-import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, PermissionsBitField } from 'discord';
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, PermissionsBitField } from 'discord.js';
 import ticketPanelSchema from '../../models/ticket'; // Adjust the path accordingly
 const lastRenameMap = new Map();
 export default {
@@ -128,7 +128,7 @@ if (['setup', 'list', 'enable', 'disable', 'reset'].includes(args[1].toLowerCase
             ]
         });
     }
-                const existingSetup = await ticketPanelSchema.findOne({ guildId: message.guild.id });
+                const existingSetup = await ticketPanelSchema().findOne({ guildId: message.guild.id });
                if (existingSetup && existingSetup.panels.length >= 2) {
                     return message.channel.send({
                         embeds: [new EmbedBuilder()
@@ -282,13 +282,13 @@ if (['setup', 'list', 'enable', 'disable', 'reset'].includes(args[1].toLowerCase
 
                 // Save the panel to the database
                 if (existingSetup) {
-                    existingSetup.panels.push(ticketSetup);
-                    await existingSetup.save();
+                    (existingSetup as any).panels.push(ticketSetup);
+                    await existingSetup.save!();
                 } else {
-                    await new ticketPanelSchema({
+                    await ticketPanelSchema().create({
                         guildId: message.guild.id,
-                        panels: [ticketSetup]
-                    }).save();
+                        panels: [ticketSetup] as any
+                    });
                 }
 
                 // Create and send the button for ticket creation with panelId

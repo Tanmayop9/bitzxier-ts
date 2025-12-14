@@ -1,4 +1,4 @@
-import { Message, Client, MessageEmbed, ActionRowBuilder, ButtonBuilder } from 'discord';
+import { Message, Client, MessageEmbed, ActionRowBuilder, ButtonBuilder } from 'discord.js';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 // Config loaded from client.config

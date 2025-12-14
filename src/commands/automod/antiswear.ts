@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord';
+import { MessageEmbed } from 'discord.js';
 let enable = `<:bitzxier_disable_no:1180518054518587454><:bitzxier_enable_yes:1180431183620882472>`
 let disable = `<:biztxier_disable_yes:1180432405501333617><:bitzxier_enable_no:1180432231282516050>`
 let protect = `<a:bitzxier_antinuke:1180431827438153821>`

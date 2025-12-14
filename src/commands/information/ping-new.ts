@@ -6,7 +6,7 @@
  */
 
 import BaseCommand from '../../structures/BaseCommand';
-import { EmbedBuilder } from 'discord';
+import { EmbedBuilder } from 'discord.js';
 
 class PingCommand extends BaseCommand {
     constructor() {
