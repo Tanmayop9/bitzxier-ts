@@ -6,7 +6,7 @@
  */
 
 import BaseCommand from '../../structures/BaseCommand.js';
-import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, version as djsVersion } from 'discord.js';
 import os from 'os';
 
 class StatsCommand extends BaseCommand {
@@ -127,7 +127,7 @@ class StatsCommand extends BaseCommand {
                     value:
                         `${client.emoji.dot} **Platform:** \`${platform}\`\n` +
                         `${client.emoji.dot} **Node.js:** \`${nodeVersion}\`\n` +
-                        `${client.emoji.dot} **Discord.js:** \`v${import('discord.js').version}\`\n` +
+                        `${client.emoji.dot} **Discord.js:** \`v${djsVersion}\`\n` +
                         `${client.emoji.dot} **Version:** \`v2-alpha-1\``,
                     inline: true
                 }
@@ -263,4 +263,4 @@ class StatsCommand extends BaseCommand {
     }
 }
 
-module.exports = new StatsCommand();
+export default new StatsCommand();

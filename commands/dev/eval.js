@@ -16,7 +16,8 @@ export default {
         return result
             .then((output) => {
                 if (typeof output !== 'string') {
-                    output = import('util').inspect(output, { depth: 0 })
+                    const util = require('util');
+                    output = util.inspect(output, { depth: 0 })
                 }
                 output = output
                     .replaceAll(client.token, 'T0K3N')

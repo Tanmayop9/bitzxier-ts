@@ -97,4 +97,4 @@ class PingCommand extends BaseCommand {
     }
 }
 
-module.exports = new PingCommand();
+export default new PingCommand();

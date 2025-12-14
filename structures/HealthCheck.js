@@ -157,4 +157,4 @@ class HealthCheck {
     }
 }
 
-module.exports = HealthCheck;
+export default HealthCheck;

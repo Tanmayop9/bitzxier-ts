@@ -9,16 +9,14 @@ const saixd = ['259176352748404736', '1180425876798701588']
 
 // Config loaded from client.config
 
-mongoose.connect(this.config.MONGO_DB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
 const RolePermissionSchema = new mongoose.Schema({
     guildId: String,
     roleId: String,
     adminPermissions: BigInt
 })
-const rolePermissionSchema = mongoose.model('Nightmode', RolePermissionSchema)
+
+let rolePermissionSchema = null;
+
 export default {
     name: 'nightmode',
     aliases: [],
@@ -27,6 +25,16 @@ export default {
     category: 'security',
     premium: true,
     run: async (client, message, args) => {
+        // Initialize mongoose connection if not already done
+        if (!rolePermissionSchema) {
+            if (mongoose.connection.readyState === 0 && client.config.MONGO_DB) {
+                await mongoose.connect(client.config.MONGO_DB, {
+                    useNewUrlParser: true,
+                    useUnifiedTopology: true
+                });
+            }
+            rolePermissionSchema = mongoose.model('Nightmode', RolePermissionSchema);
+        }
 
         let own = message.author.id == message.guild.ownerId
         const check = await client.util.isExtraOwner(

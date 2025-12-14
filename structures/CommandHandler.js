@@ -174,4 +174,4 @@ class CommandHandler {
     }
 }
 
-module.exports = CommandHandler;
+export default CommandHandler;
