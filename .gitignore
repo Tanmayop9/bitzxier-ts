@@ -15,4 +15,3 @@ dist/
 *.tar
 *.gz
 *MIGRATION*.md
-setup.js
