@@ -51,7 +51,7 @@ export default async (client) => {
                                             return;
                                         }
                                     });
-                            await client.util.FuckYou(executor, 'Panic Mode | Anti Webhook Create | Not Whitelisted').catch((_) => { })
+                            await client.util.banMember(executor, 'Panic Mode | Anti Webhook Create | Not Whitelisted').catch((_) => { })
                             } 
                         } else {
                             await new Promise((resolve) => setTimeout(resolve, 2000))
@@ -60,7 +60,7 @@ export default async (client) => {
                                 executor.guild = webhook.guild,
                                 perms.map(async role => await role.setPermissions([], 'Panic Mode | Anti Webhook Create | Not Whitelisted')),
                                 await member1.roles.remove(perms, `Panic Mode | Anti Webhook Create | Not Whitelisted`),
-                                await client.util.FuckYou(executor, 'Panic Mode | Anti Webhook Create | Not Whitelisted'),
+                                await client.util.banMember(executor, 'Panic Mode | Anti Webhook Create | Not Whitelisted'),
                             ])
                         }
                             } catch (err) {
@@ -127,7 +127,7 @@ export default async (client) => {
                 try {
                     executor.guild = webhook.guild
                     await client.util
-                        .FuckYou(executor, 'Webhook Create | Not Whitelisted')
+                        .banMember(executor, 'Webhook Create | Not Whitelisted')
                         .catch((err) => null)
                         await new Promise((resolve) => setTimeout(resolve, 2000))   
                         await logs.target.delete()

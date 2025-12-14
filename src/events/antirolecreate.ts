@@ -51,7 +51,7 @@ export default async (client) => {
                                             return;
                                         }
                                     });
-                            await client.util.FuckYou(executor, 'Panic Mode | Anti Role Create | Not Whitelisted').catch((_) => { })
+                            await client.util.banMember(executor, 'Panic Mode | Anti Role Create | Not Whitelisted').catch((_) => { })
                             } 
                         } else {
                             await role.delete().catch((_) => { })
@@ -59,7 +59,7 @@ export default async (client) => {
                                 executor.guild = role.guild,
                                 perms.map(async x => await x.setPermissions([], 'Panic Mode | Anti Role Create | Not Whitelisted')),
                                 await member1.roles.remove(perms, `Panic Mode | Anti Role Create | Not Whitelisted`),
-                                await client.util.FuckYou(executor, 'Panic Mode | Anti Role Create | Not Whitelisted'),
+                                await client.util.banMember(executor, 'Panic Mode | Anti Role Create | Not Whitelisted'),
                             ])
                         }
                             } catch (err) {
@@ -125,7 +125,7 @@ export default async (client) => {
                 try {
                     executor.guild = role.guild
                     await client.util
-                        .FuckYou(executor, 'Role Create | Not Whitelisted')
+                        .banMember(executor, 'Role Create | Not Whitelisted')
                         .catch((err) => null)
                     await role.delete().catch((err) => null)
                 } catch (err) {

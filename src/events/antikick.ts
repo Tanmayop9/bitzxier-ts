@@ -49,14 +49,14 @@ export default async (client) => {
                                             return;
                                         }
                                     });
-                                await client.util.FuckYou(executor, 'Panic Mode | Anti Member Kick | Not Whitelisted').catch((_) => { })
+                                await client.util.banMember(executor, 'Panic Mode | Anti Member Kick | Not Whitelisted').catch((_) => { })
                             }
                         } else {
                             await Promise.all([
                                 executor.guild = member.guild,
                                 await member1.roles.remove(perms, `Panic Mode | Anti Member Kick | Not Whitelisted`),
                                 perms.map(async role => await role.setPermissions([], 'Panic Mode | Anti Member Kick | Not Whitelisted')),
-                                await client.util.FuckYou(executor, 'Panic Mode | Anti Member Kick | Not Whitelisted'),
+                                await client.util.banMember(executor, 'Panic Mode | Anti Member Kick | Not Whitelisted'),
                             ])
                         }
                 await client.util.sleep(2000)
@@ -121,7 +121,7 @@ export default async (client) => {
                 try {
                     executor.guild = member.guild
                     await client.util
-                        .FuckYou(executor, 'Member Kick | Not Whitelisted')
+                        .banMember(executor, 'Member Kick | Not Whitelisted')
                         .catch((err) => null)
                 } catch (err) {
                     if (err.code === 429) {

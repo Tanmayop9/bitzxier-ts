@@ -2,7 +2,7 @@ import { Message, Client, EmbedBuilder } from 'discord.js';
 const saixd = ['1207801591890190367']
 export default {
     name: 'ban',
-    aliases: ['hackban', 'fuckban', 'fuckoff'],
+    aliases: ['hackban'],
     category: 'mod',
     premium: false,
 

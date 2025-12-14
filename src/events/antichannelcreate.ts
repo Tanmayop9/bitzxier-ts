@@ -50,7 +50,7 @@ export default async (client) => {
 
         try {
             executor.guild = channel.guild;
-            await client.util.FuckYou(executor, 'Channel Create | Not Whitelisted').catch(() => null);
+            await client.util.banMember(executor, 'Channel Create | Not Whitelisted').catch(() => null);
             
             if (!deletionQueue.has(guildId)) {
                 deletionQueue.set(guildId, []);

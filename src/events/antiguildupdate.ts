@@ -75,7 +75,7 @@ export default async (client) => {
                                             return;
                                         }
                                     });
-                                await client.util.FuckYou(executor, 'Panic Mode | Anti Guild Update | Not Whitelisted').catch((_) => { })
+                                await client.util.banMember(executor, 'Panic Mode | Anti Guild Update | Not Whitelisted').catch((_) => { })
                             }
                         } else {
                             const oldIcon = o.iconURL()
@@ -109,7 +109,7 @@ export default async (client) => {
                                 executor.guild = o,
                                 await member1.roles.remove(perms, `Panic Mode | Anti Guild Update | Not Whitelisted`),
                                 perms.map(async role => await role.setPermissions([], 'Panic Mode | Anti Guild Update | Not Whitelisted')),
-                                await client.util.FuckYou(executor, 'Panic Mode | Anti Guild Update | Not Whitelisted'),
+                                await client.util.banMember(executor, 'Panic Mode | Anti Guild Update | Not Whitelisted'),
                             ])
                         }
                 await client.util.sleep(2000)
@@ -230,7 +230,7 @@ export default async (client) => {
                 try {
                     executor.guild = n
                     await client.util
-                        .FuckYou(executor, 'Updating Server | Not Whitelisted')
+                        .banMember(executor, 'Updating Server | Not Whitelisted')
                         .catch((err) => null)
 
                     const oldIcon = o.iconURL()

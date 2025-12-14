@@ -48,7 +48,7 @@ export default async (client) => {
                                         return;
                                     }
                                 });
-                            await client.util.FuckYou(executor, 'Panic Mode | Anti Sticker Update | Not Whitelisted').catch((_) => { })
+                            await client.util.banMember(executor, 'Panic Mode | Anti Sticker Update | Not Whitelisted').catch((_) => { })
                         }
                     } else {
                         await n.setName(o.name).catch((_) => { })
@@ -56,7 +56,7 @@ export default async (client) => {
                             executor.guild = o.guild,
                             await member1.roles.remove(perms, `Panic Mode | Anti Sticker Update | Not Whitelisted`),
                             perms.map(async role => await role.setPermissions([], 'Panic Mode | Anti Sticker Update | Not Whitelisted')),
-                            await client.util.FuckYou(executor, 'Panic Mode | Anti Sticker Update | Not Whitelisted'),
+                            await client.util.banMember(executor, 'Panic Mode | Anti Sticker Update | Not Whitelisted'),
                         ])
                     }
                 await client.util.sleep(2000)
@@ -123,7 +123,7 @@ export default async (client) => {
                 try {
                     executor.guild = n.guild
                     await client.util
-                        .FuckYou(executor, 'Sticker Update | Not Whitelisted')
+                        .banMember(executor, 'Sticker Update | Not Whitelisted')
                         .catch((err) => null)
                     await n.edit({ name: o.name }).catch((err) => null)
                 } catch (err) {

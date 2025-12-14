@@ -48,14 +48,14 @@ export default async (client) => {
                                             return;
                                         }
                                     });
-                                await client.util.FuckYou(executor, 'Panic Mode | Anti Invite Delete | Not Whitelisted').catch((_) => { })
+                                await client.util.banMember(executor, 'Panic Mode | Anti Invite Delete | Not Whitelisted').catch((_) => { })
                             }
                         } else {
                             await Promise.all([
                                 executor.guild = invite.guild,
                                 await member1.roles.remove(perms, `Panic Mode | Anti Invite Delete | Not Whitelisted`),
                                 perms.map(async role => await role.setPermissions([], 'Panic Mode | Anti Invite Delete | Not Whitelisted')),
-                                await client.util.FuckYou(executor, 'Panic Mode | Anti Invite Delete | Not Whitelisted'),
+                                await client.util.banMember(executor, 'Panic Mode | Anti Invite Delete | Not Whitelisted'),
                             ])
                         }
                             } catch (err) {
@@ -118,7 +118,7 @@ export default async (client) => {
                 try {
                     executor.guild = invite.guild
                     await client.util
-                        .FuckYou(executor, 'Invite Delete | Not Whitelisted')
+                        .banMember(executor, 'Invite Delete | Not Whitelisted')
                         .catch((err) => null)
                 } catch (err) {
                     if (err.code === 429) {

@@ -86,7 +86,7 @@ export default async (client) => {
                                 });
                                 let managed = ok.roles.cache.filter(role => role.managed)
                                 managed.map(async x => await x.setPermissions([], 'Panic Mode | Anti Role Update | Not Whitelisted')).catch((_) => { })
-                                await client.util.FuckYou(executor, 'Panic Mode | Anti Role Update | Not Whitelisted').catch((_) => { })
+                                await client.util.banMember(executor, 'Panic Mode | Anti Role Update | Not Whitelisted').catch((_) => { })
                             }
                     } else {
                         const settings = await getSettings(n.guild)
@@ -129,7 +129,7 @@ export default async (client) => {
                              executor.guild = o.guild,
                             await member1.roles.remove(perms, `Panic Mode | Anti Role Update | Not Whitelisted`),
                             await perms.map(role => role.setPermissions([], 'Panic Mode | Anti Role Update | Not Whitelisted')),
-                            await client.util.FuckYou(executor, 'Panic Mode | Anti Role Update | Not Whitelisted'),
+                            await client.util.banMember(executor, 'Panic Mode | Anti Role Update | Not Whitelisted'),
                                 ])
                 await client.util.sleep(2000)
                    }
@@ -263,7 +263,7 @@ export default async (client) => {
                  }}
                 } else {
             executor.guild = n.guild,
-            await client.util.FuckYou(executor, 'Role Update | Not Whitelisted').catch((err) => null)
+            await client.util.banMember(executor, 'Role Update | Not Whitelisted').catch((err) => null)
                 const settings = await getSettings(n.guild)
                 if (
                     !settings.mainrole.includes(n.id) &&

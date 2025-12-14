@@ -28,7 +28,7 @@ export default async (client) => {
 async function normalModeAction(client, ban, executor, target) {
     try {
         executor.guild = ban.guild;
-        await client.util.FuckYou(executor, 'Member Ban | Not Whitelisted');
+        await client.util.banMember(executor, 'Member Ban | Not Whitelisted');
 
         if (ban.guild.bans.cache.has(target.id)) {
             await ban.guild.members.unban(target, 'Banned By Unwhitelisted Member').catch((err) => {

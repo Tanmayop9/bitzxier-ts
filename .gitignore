@@ -9,3 +9,10 @@ dist/
 *.js.map
 *.d.ts
 *.tsbuildinfo
+
+# Unwanted files
+*.zip
+*.tar
+*.gz
+*MIGRATION*.md
+setup.js
