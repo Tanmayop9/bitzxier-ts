@@ -4,7 +4,7 @@ data-sets/
 Database/
 .env
 
-# TypeScript
+# Build artifacts
 dist/
 *.js.map
 *.d.ts
