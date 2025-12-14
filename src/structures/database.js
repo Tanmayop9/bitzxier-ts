@@ -76,6 +76,39 @@ class Database {
             await this.connect();
         return await this.db.clear();
     }
+    async push(key, value) {
+        if (!this.connected)
+            await this.connect();
+        try {
+            const current = await this.db.get(key);
+            if (Array.isArray(current)) {
+                const updated = [...current, value];
+                await this.db.set(key, updated);
+            } else {
+                await this.db.set(key, [value]);
+            }
+            return true;
+        }
+        catch (error) {
+            return false;
+        }
+    }
+    async pull(key, value) {
+        if (!this.connected)
+            await this.connect();
+        try {
+            const current = await this.db.get(key);
+            if (Array.isArray(current)) {
+                const filtered = current.filter(item => item !== value);
+                await this.db.set(key, filtered);
+                return true;
+            }
+            return false;
+        }
+        catch (error) {
+            return false;
+        }
+    }
 }
 export default Database;
 //# sourceMappingURL=database.js.map

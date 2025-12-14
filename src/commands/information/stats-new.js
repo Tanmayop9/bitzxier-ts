@@ -168,7 +168,7 @@ class StatsCommand extends BaseCommand {
                     iconURL: client.user.displayAvatarURL()
                 })
                     .setDescription(`### Quick Links\n\n` +
-                    `${client.emoji.dot} **[Invite Bot](https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot)**\n` +
+                    `${client.emoji.dot} **[Invite Bot](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot)**\n` +
                     `${client.emoji.dot} **[Support Server](${client.support})**\n` +
                     `${client.emoji.dot} **[Vote](https://top.gg/bot/${client.user.id}/vote)**`)
                     .setFooter({ text: 'Author: Tanmay | Recoded by Nerox Studios | v2-alpha-1' })
