@@ -11,11 +11,12 @@ export default async (client) => {
         
         // Store snipe data for the snipe command
         const snipeKey = `snipe_${message.guild.id}_${message.channel.id}`;
+        const firstAttachment = message.attachments.first();
         const snipeData = {
             content: message.content || 'No content available',
             author: message.author.tag || 'Unknown Author',
             timestamp: message.createdTimestamp,
-            imageUrl: message.attachments.size > 0 ? message.attachments.first().url : null
+            imageUrl: firstAttachment ? firstAttachment.url : null
         };
         await client.db.set(snipeKey, snipeData);
         if(!data || !data?.message) return;

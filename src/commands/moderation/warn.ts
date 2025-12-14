@@ -179,7 +179,11 @@ export default {
                 const filteredWarnings = warnings.filter(w => w.warnId !== warnId);
 
                 if (filteredWarnings.length < warnings.length) {
-                    await client.db.set(warningsKey, filteredWarnings);
+                    if (filteredWarnings.length === 0) {
+                        await client.db.delete(warningsKey);
+                    } else {
+                        await client.db.set(warningsKey, filteredWarnings);
+                    }
                     return message.channel.send({
                         embeds: [
                             client.util.embed()
