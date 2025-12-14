@@ -12,7 +12,6 @@ class HealthCheck {
     private client: any;
     constructor(client: any) {
         this.client = client;
-        this.client = client;
         this.startTime = Date.now();
     }
 

@@ -10,7 +10,6 @@ import { Collection } from 'discord.js';
 class CommandHandler {
     constructor(client: any) {
         this.client = client;
-        this.client = client;
         this.cooldownCache = new Collection();
     }
 

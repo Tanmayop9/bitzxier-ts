@@ -29,11 +29,11 @@ export default async (client) => {
             const joinEmbed = client.util.embed()
                 .setColor(client.color) 
             
-                .setThumbnail(member.displayAvatarURL({ dyanmic : true}) ? member.displayAvatarURL({ dyanmic : true}) : message.guild.iconURL({ dyanmic : true}))
+                .setThumbnail(member.displayAvatarURL({ dynamic : true}) ? member.displayAvatarURL({ dynamic : true}) : message.guild.iconURL({ dynamic : true}))
                 .setTitle('Member Joined Voice Channel')
                 .setDescription(`${member.user.tag} joined voice channel "${joinedChannel}"`)
                 .addFields({name :'Channel',value : joinedChannel })
-                .setFooter({ text : `${member.user.tag} joined voice channel`, iconURL : member.displayAvatarURL({ dyanmic : true})})
+                .setFooter({ text : `${member.user.tag} joined voice channel`, iconURL : member.displayAvatarURL({ dynamic : true})})
                 .setTimestamp();
 
                 await wait(2000);
@@ -45,11 +45,11 @@ export default async (client) => {
     
             const leaveEmbed = client.util.embed()
                 .setColor(client.color) 
-                .setThumbnail(member.displayAvatarURL({ dyanmic : true}) ? member.displayAvatarURL({ dyanmic : true}) : message.guild.iconURL({ dyanmic : true}))
+                .setThumbnail(member.displayAvatarURL({ dynamic : true}) ? member.displayAvatarURL({ dynamic : true}) : message.guild.iconURL({ dynamic : true}))
                 .setTitle('Member Left Voice Channel')
                 .setDescription(`${member.user.tag} left voice channel "${leftChannel}"`)
                 .addFields({ name : 'Channel', value : leftChannel })
-                .setFooter({ text : `${member.user.tag} Leaved voice channel`, iconURL : member.displayAvatarURL({ dyanmic : true})})
+                .setFooter({ text : `${member.user.tag} Leaved voice channel`, iconURL : member.displayAvatarURL({ dynamic : true})})
                 .setTimestamp();
 
 await wait(2000);
@@ -65,7 +65,7 @@ await voicelog.send({ embeds: [leaveEmbed] }).catch((err) => null)
         
             const moveEmbed = client.util.embed()
                 .setColor(client.color)
-                .setThumbnail(member.displayAvatarURL({ dyanmic : true}) ? member.displayAvatarURL({ dyanmic : true}) : message.guild.iconURL({ dyanmic : true}))
+                .setThumbnail(member.displayAvatarURL({ dynamic : true}) ? member.displayAvatarURL({ dynamic : true}) : message.guild.iconURL({ dynamic : true}))
                 .setTitle('Member Moved Voice Channels')
                 .setDescription(`${member.user.tag} moved from "${oldChannel}" to "${newChannel}"`)
                 .addFields({ name: 'From', value: oldChannel })

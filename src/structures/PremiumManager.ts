@@ -9,7 +9,6 @@ class PremiumManager {
     private client: any;
     constructor(client: any) {
         this.client = client;
-        this.client = client;
     }
 
     /**
