@@ -1,0 +1,15 @@
+{
+    "TOKEN": "YOUR_DISCORD_BOT_TOKEN_HERE",
+    "WEBHOOK_URL": "",
+    "ERROR_WEBHOOK_URL": "",
+    "RATELIMIT_WEBHOOK_URL": "",
+    "cooldown": true,
+    "owner": ["YOUR_DISCORD_USER_ID_HERE"],
+    "friday": [],
+    "mainmode": [],
+    "premium": [],
+    "admin": [],
+    "np": [],
+    "invite": "",
+    "baseText": "```\n<> - Required | () - Optional```"
+}
